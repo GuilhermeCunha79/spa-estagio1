@@ -1,0 +1,48 @@
+<div class="bg-img">
+  <div class="body">
+    <section>
+      <div id="loginForm" class="loginForm">
+        <div class="formArea">
+          <div class="loginLogo formItem">
+            <img src="favicon.ico" alt="">
+          </div>
+          <div class="loginTitle formItem">
+            <h1>Score</h1>
+          </div>
+          <div class="formItem">
+            <div class="loginField">
+              <span class="ui-login-icon ui-login-icon-username"></span>
+              <div class="field-container ui-cst-textbox" data-password="0" data-placeholder="Username"
+                   data-widget="true" id="Username_container" name="Username.container">
+                <input class="ui-cst-textbox-input ui-textbox-watermark" placeholder="Username" id="Username_Txt" name="Username.Txt"
+                       type="text" [(ngModel)]="email">
+                <input class="ui-cst-textbox-hidden" id="Username" name="Username"   type="hidden" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="formItem">
+            <div class="loginField">
+              <span class="ui-login-icon ui-login-icon-password"></span>
+              <input class="form-control" data-val="true" data-val-required="Password é obrigatória." id="Password"
+                     name="Password" placeholder="Password" type="password" [(ngModel)]="password">
+            </div>
+          </div>
+          <div class="formItem">
+            <button
+              class="loginButton ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+              id="submitLogin" name="submitLogin" type="submit" role="button" (click)="login()">
+              <span class="ui-button-text">Login</span></button>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute; right:10px;bottom:10px; margin:10px;">
+        <span><a target="_blank">Termos e Condições</a></span>
+      </div>
+
+
+    </section>
+  </div>
+  <footer>
+  </footer>
+
+</div>

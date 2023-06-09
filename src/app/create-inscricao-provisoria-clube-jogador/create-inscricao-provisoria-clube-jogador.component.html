@@ -1,0 +1,505 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' xmlns="http://www.w3.org/1999/html">
+
+<div class="top-bar">
+  <header>
+    <div class="header">
+      <a href="/">
+        <img class="headerLogo" src="favicon.ico" alt="logo">
+      </a>
+      <h1 class="headerTitle">Score</h1>
+      <div class="user-box">
+        <span class="user-box-username">Ligado como:</span>
+        <span class="user-box-profile" title="Guilherme Cunha, A.F. ANGRA HEROÍSMO">{{roles[userData.role - 1]}}
+          , {{nomee}} </span>
+        <div class="user-box-profile-selector visible">
+        <span class="user-box-profile-image" title="Alterar perfil">
+            <img src="favicon.ico" title="Guilherme Cunha" class="image-preview-small" onerror="$(this).hide();">
+        </span>
+
+          <div class="user-box-profile-container " style="display: none;">
+            <div class="user-box-profile-user" data-url="/UserProfile">
+              <div class="user-box-profile-user-picture">
+                <img src="favicon.ico" title="Guilherme Cunha" class="image-preview">
+                <div class="image-preview default-image force-hidden" title="Guilherme Cunha"></div>
+              </div>
+              <div class="user-box-profile-user-login">
+                <span class="user-box-profile-title">Login:  </span>
+                <span class="user-box-profile-data" title="Guilherme Cunha">
+                       {{roles[userData.role - 1]}}
+                    </span>
+              </div>
+            </div>
+            <div class="user-separator"></div>
+            <div class="user-box-profile-accounts">
+              <div class="user-box-profile-accounts-title">Outras contas</div>
+              <ul class="user-box-profile-menu">
+                <li class="entity-account managed-entity" data-id="2656">
+                  <div class="managed-entity" data-id="2656">
+                    <img src="" title="F.C. DA CALHETA" class="image-preview">
+                  </div>
+                  <div class="image-preview default-image force-hidden managed-entity" title="F.C. DA CALHETA"
+                       data-id="2656"></div>
+                  <a href="#" class="managed-entity" data-id="2656" title="F.C. DA CALHETA">{{nomee}}</a>
+                </li>
+              </ul>
+            </div>
+            <div class="user-separator"></div>
+            <a href="/Account/ChangeUserPassword">Alterar password</a>
+            <div class="user-separator"></div>
+            <a href="/Support">Suporte</a>
+            <div class="user-separator"></div>
+            <a href="/Manual"> Manuais</a>
+            <div class="user-separator"></div>
+            <div class="logout">
+              <form action="/Account/LogOff" id="logoutForm" method="post"><input name="__RequestVerificationToken"
+                                                                                  type="hidden"
+                                                                                  value="pCcuH4ztLoMU3zxOfuAnEFA1gyvbF1Ft1NzzQiOQVTerpM0IaCftRGso7iU9xiSUycDQe7zIsrjNbouv_rKhDAmqWkBgcXFGlYMUltDi2fCMHqIU3JCq00Luowyx-Jhl0">
+                <div class="logout-container">
+                  <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                          id="btnLogout" name="btnLogout" type="submit" role="button"><span class="ui-button-text">Logout</span>
+                  </button>
+                  <div class="ui-cst-icon ui-cst-icon-turn-off"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <nav>
+    <div class="navigation-container">
+      <ul class="ui-cst-navigation first-level">
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club"
+             onclick="return loadWindow('/InscricaoClubes/Club');">Início</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Filiation"
+             onclick="return loadWindow('/InscricaoClubes/Club/Filiation');">Filiação</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Team"
+             onclick="return loadWindow('/InscricaoClubes/Team');">Inscrição de equipas</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Create"
+             onclick="return loadWindow('/InscricaoClubes/Club/Create');">Criação</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Edit"
+             onclick="return loadWindow('/InscricaoClubes/Club/Edit');">Edição</a>
+        </li>
+        <li class="vertical-menu">
+          <a [routerLink]="['/processoInscricao']">Processos</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/ClubContactDetail"
+             onclick="return loadWindow('/InscricaoClubes/Club/ClubContactDetail');">Contatos do clube</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/VemJogar"
+             onclick="return loadWindow('/InscricaoClubes/VemJogar');">Vem Jogar</a>
+        </li>
+      </ul>
+      <div class="module-area ">
+        <button type="button" class="module-button ui-cst-misc-icon"></button>
+        <div class="module-menu-container" id="moduleMenuContainer" style="width: 1280px; height: 96px;">
+          <div
+            style="position: absolute; top: 0px; left: 0px; width: 1280px; height: 96px; transform-origin: 0px 0px; transform: scale(1);">
+            <div class="module-menu-container " style="position: relative; top: 0px; left: 0px; overflow: visible;">
+              <div u="slides" class="module-menu-slides" style="z-index: 0; position: absolute;">
+                <div style="position: absolute; z-index: 0; left: 0px; top: 0px;">
+                  <div style="position: absolute; z-index: 0; left: 0px; top: 0px;"></div>
+                </div>
+                <div u="slides" class="module-menu-slides" style="z-index: 0; position: absolute; overflow: hidden;">
+                  <div
+                    style="width: 106px; height: 96px; top: 0px; left: 0px; position: absolute; background-color: rgb(0, 0, 0); opacity: 0;"></div>
+
+                </div>
+                <span u="arrowleft" class="jssora03l"></span>
+                <span u="arrowright" class="jssora03r"></span>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </nav>
+  <p>
+
+  <div class="body">
+
+    <section>
+      <div class="content-container">
+        <header style="margin-top: 14px;">
+          <h2 style="margin-top: 12px;">Nova 1ª inscrição de amadores</h2>
+        </header>
+
+        <div class="content form">
+
+          <ul class="wizard-steps-bar">
+            <li>
+
+              <div class="wizard-step wizard-step-active" data-stepnumber="1">
+    <span class="wizard-step-content" data-stepnumber="1">
+        <span class="wizard-step-number" id="wizard_step_1">1</span>
+        <label class="wizard-step-desc">Novo Jogador</label>
+    </span>
+              </div>
+            </li>
+            <li>
+
+              <div class="wizard-step" data-stepnumber="2">
+    <span class="wizard-step-content" data-stepnumber="2">
+        <span class="wizard-step-number" id="wizard_step_2">2</span>
+        <label class="wizard-step-desc">Inscrição</label>
+    </span>
+              </div>
+            </li>
+            <li>
+
+              <div class="wizard-step" data-stepnumber="3">
+    <span class="wizard-step-content" data-stepnumber="3">
+        <span class="wizard-step-number" id="wizard_step_3">3</span>
+        <label class="wizard-step-desc">Documentos</label>
+    </span>
+              </div>
+            </li>
+            <li>
+
+              <div class="wizard-step" data-stepnumber="4">
+    <span class="wizard-step-content" data-stepnumber="4">
+        <span class="wizard-step-number" id="wizard_step_4">4</span>
+        <label class="wizard-step-desc">Resumo</label>
+    </span>
+              </div>
+
+            </li>
+          </ul>
+
+          <div id="wizardBody" class="scoreForm">
+            <div class="form-field-zone">
+
+
+              <div id="processGrid_wrapper" class="dataTables_wrapper no-footer">
+                <table id="processGrid" class="dataTable no-footer" role="grid" style="width: 100%;">
+                  <thead>
+
+                  <tr role="row">
+                    <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                        aria-label="Nome: activate to sort column ascending" style="width: 300px;">Tipo de Documento
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                        aria-label="Nome: activate to sort column ascending" style="width: 155px;">Nome do ficheiro
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                        aria-label="Nome: activate to sort column ascending" style="width: 90px;">Provisório
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                        aria-label="Nome: activate to sort column ascending" style="width: 100px;">Ações
+                    </th>
+
+                    <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                        aria-label="Nome: activate to sort column ascending" style="width: 100px;">Pré-visualizar
+                    </th>
+
+
+                  </tr>
+                  </thead>
+
+                  <tbody>
+
+                  <tr>
+                    <td>Modelo 2</td>
+
+                    <td><input style="text-align: center; color: #808080;width: 250px" [(ngModel)]="nomeFicheiro"
+                               disabled=""></td>
+                    <td></td>
+
+                    <td>
+                      <label for="file"> <i class='bx bxs-cloud-upload icon'></i>
+
+                      </label>
+
+                      <input type="file" id="file" name="myfile"
+                             accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                             hidden (change)="onSelectNewFile($event)"><br><br>
+
+                    </td>
+
+                    <td>
+                      <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
+                        <img [src]="imageUrl" alt="">
+                      </div>
+                    </td>
+
+                  </tr>
+
+                  <tr>
+                    <td>Documento de Identificação</td>
+
+                    <td><input [(ngModel)]="nomeFicheiro1" style="text-align: center;width: 250px;color: #808080;"
+                               disabled=""></td>
+                    <td></td>
+
+                    <td>
+                      <label for="file1"><i class='bx bxs-cloud-upload icon'></i>
+                      </label>
+                      <input type="file" id="file1" name="myfile1"
+                             accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                             hidden (change)="onSelectNewFile1($event)"><br><br>
+                    </td>
+
+                    <td>
+                      <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
+                        <img [src]="imageUrl1" alt="">
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <button class="button" type="submit"
+                      (click)="createInscricaoClubeJogador();convertFileToBase641();convertFileToBase64()">Submit
+              </button>
+
+
+
+              <div class="form-field-row  mandatory-field">
+                <label for="Name" style="width: 250px">Nome:</label>
+
+                <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="Name_container"
+                     name="Name.container">
+                  <input class="ui-cst-textbox-input" id="Name" name="Nme" type="text" [(ngModel)]="nome">
+                </div>
+              </div>
+
+
+
+              <!--<ngx-spinner [bdColor]="'rgba(51,51,51,0.8)'" [size]="'medium'" [color]="'#fff'" [type]="'ball-atom'"></ngx-spinner>-->
+
+
+
+              <div class="form-field-row  mandatory-field">
+                <label>Tipo de doc. de identificação:</label>
+                <select required style="width: 200px; font-size: 10px;"  [(ngModel)]="tipoDoc">
+                  <option style="font-size: 10px;">Selecione...</option>
+                  <option style="font-size: 10px;">Número de identificação civil</option>
+                  <option style="font-size: 10px;" >Passaporte</option>
+                  <option style="font-size: 10px;" >Carta de residência</option>
+                  <option style="font-size: 10px;" >Autorização de residência</option>
+                  <option style="font-size: 10px;" >B.i. estrangeiro</option>
+                  <option style="font-size: 10px;">Título de residência</option>
+                </select>
+              </div>
+
+
+              <div class="form-field-row quarter-width mandatory-field">
+                <label>Nº. doc. de identificação:</label>
+
+                <div class="field-container ui-cst-textbox" data-password="0" data-widget="false"
+                     id="nrIdentificacao111"
+                     name="nrIdentificacao.container">
+                  <input class="ui-cst-textbox-input" id="nrIdentificacao" style="width: 200px" name="nrIdentificacao"
+                         type="text" [(ngModel)]="nrIdentificacao">
+                </div>
+              </div>
+
+              <div class="form-field-row quarter-width  mandatory-field">
+                <label>Validade doc. identificação:</label>
+                <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="validadeDoc1"
+                     name="validadeDocId.container" style="height: 23px;">
+                  <input id="validadeDocId" name="validadeDocId" style="width: 200px " type="text"
+                         [matDatepicker]="picker" class="" [(ngModel)]="validadeDocId" readonly>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </div>
+              </div>
+
+              <div class="form-field-row quarter-width mandatory-field">
+                <label>Nº identificação fiscal:</label>
+                <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="Nif1"
+                     name="Nif.container">
+                  <input class="ui-cst-textbox-input" id="Nif" style="width: 200px" name="Nif" type="text"
+                         [ngModel]="nif">
+                </div>
+              </div>
+
+              <div class="form-field-row quarter-width  mandatory-field">
+                <label>Sexo:</label>
+                <select required style="width: 200px; font-size: 10px;" [(ngModel)]="sexo">
+                  <option>Selecione...</option>
+                  <option value="Masculino" style="font-size: 10px;">Masculino</option>
+                  <option value="Feminino" style="font-size: 10px;">Feminino</option>
+                </select>
+              </div>
+
+              <div class="form-field-row quarter-width  mandatory-field" style="margin-bottom: 3px">
+                <label>Data de nascimento:</label>
+                <input [(ngModel)]="dataNascimento" id="dataNascimento" name="dataNascimento" style="width: 200px"
+                       type="text"
+                       [matDatepicker]="picker1" class="" readonly>
+
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </div>
+
+              <div class="form-field-row quarter-width  mandatory-field">
+
+                <label>País de origem:</label>
+
+                <select style="width: 200px; font-size: 10px;" placeholder="Selecione..." [(ngModel)]="paisNascenca">
+                  <option style="font-size: 10px;">Selecione...</option>
+                  <option *ngFor="let item of paisesNascenca" [value]="item"
+                          style="font-size: 10px;">{{ item }}</option>
+                </select>
+              </div>
+
+              <div class="form-field-row quarter-width  mandatory-field">
+                <label>Nacionalidade:</label>
+                <select style="width: 200px; font-size: 10px;" placeholder="Selecione..." [(ngModel)]="nacionalidade">
+                  <option style="font-size: 10px;">Selecione...</option>
+                  <option *ngFor="let item of paisesNacionalidade" [value]="item"
+                          style="font-size: 10px;">{{ item }}</option>
+                </select>
+              </div>
+
+              <div class="form-field-row quarter-width">
+                <label>Concelho de residência:</label>
+                <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="Concelho1"
+                     name="Concelho.container">
+                  <input class="ui-cst-textbox-input" id="Concelho" style="width: 200px" name="concelho" type="text"
+                         [(ngModel)]="concelhoResidencia">
+                </div>
+              </div>
+
+              <div class="form-field-row quarter-width mandatory-field">
+                <label for="estatutoFpF">Estatuto FPF:</label>
+                <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="Estatuto1"
+                     name="estatutoFpF.container">
+                  <input class="ui-cst-textbox-input" id="estatutoFpF" style="width: 200px" name="estatutoFpF"
+                         type="text" disabled="" [(ngModel)]="estatutoFpF" readonly>
+                </div>
+              </div>
+
+              <div class="form-field-row quarter-width mandatory-field">
+                <label>Telefone:</label>
+                <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="Telefone1"
+                     name="Telefone.container">
+                  <input class="ui-cst-textbox-input" id="Telefone" style="width: 200px" name="telefone" type="text"
+                         [(ngModel)]="telefone">
+                </div>
+              </div>
+
+              <div class="form-field-row quarter-width mandatory-field">
+                <label>Endereço de email:</label>
+                <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="email1"
+                     name="Email.container">
+                  <input class="ui-cst-textbox-input" id="email" style="width: 200px" name="email" type="text"
+                         [(ngModel)]="email">
+                </div>
+              </div>
+
+              <div class="scoreForm mandatory-field" style="font-weight:bold; margin-top:20px; margin-bottom:10px;">
+                <label id="DenyPersonalInformationUsage_Label">Autorizo a publicação no Portal da FPF de todos os dados
+                  biográficos associados ao meu percurso desportivo</label>
+              </div>
+              <div id="AuthorizeDataPortalDiv"
+                   style="display:flex; flex-direction: row; justify-content: left; align-items:flex-start; margin-bottom:15px;">
+                <label style="margin-right:5px;    margin-top: 5px;">Sim</label>
+
+
+                <div class="field-container ui-cst-checkbox"><input class="ui-cst-checkbox-input"
+                                                                    name="AllowPersonalInformationUsage.chk"
+                                                                    type="checkbox"><input class="ui-cst-checkbox-value"
+                                                                                           id="AllowPersonalInformationUsage"
+                                                                                           name="AllowPersonalInformationUsage"
+                                                                                           type="hidden" value="false">
+                </div>
+
+                <label style="margin-left:20px; margin-right:5px;    margin-top: 5px;">Não</label>
+
+
+                <div class="field-container ui-cst-checkbox"><input class="ui-cst-checkbox-input"
+                                                                    name="DenyPersonalInformationUsage.chk"
+                                                                    type="checkbox"><input class="ui-cst-checkbox-value"
+                                                                                           id="DenyPersonalInformationUsage"
+                                                                                           name="DenyPersonalInformationUsage"
+                                                                                           type="hidden" value="false">
+                </div>
+              </div>
+
+
+              <div class="scoreForm mandatory-field" style="font-weight:bold; margin-bottom:10px;">
+                <label id="AuthorizeDataProcessing_Label">Autorizo que a FPF possa contactar-me para envio de
+                  comunicações personalizadas sobre todas as suas atividades</label>
+              </div>
+              <div id="AuthorizeDataDiv"
+                   style="display:flex; flex-direction: row; justify-content: left; align-items:flex-start;">
+                <label style="margin-right:5px;    margin-top: 5px;">Sim</label>
+
+
+                <div class="field-container ui-cst-checkbox"><input class="ui-cst-checkbox-input"
+                                                                    name="AuthorizeDataProcessing.chk"
+                                                                    type="checkbox"><input class="ui-cst-checkbox-value"
+                                                                                           id="AuthorizeDataProcessing"
+                                                                                           name="AuthorizeDataProcessing"
+                                                                                           type="hidden" value="false">
+                </div>
+
+
+                <label style="margin-left:20px; margin-right:5px;    margin-top: 5px;">Não</label>
+
+
+                <div class="field-container ui-cst-checkbox"><input class="ui-cst-checkbox-input"
+                                                                    name="UnauthorizeDataProcessing.chk"
+                                                                    type="checkbox"><input class="ui-cst-checkbox-value"
+                                                                                           id="UnauthorizeDataProcessing"
+                                                                                           name="UnauthorizeDataProcessing"
+                                                                                           type="hidden" value="false">
+                </div>
+
+              </div>
+              <div class="form-field-row" style="margin-top:15px;">
+                * Campos obrigatórios
+              </div>
+
+              <div class="form-buttons-panel" id="wizardButtons">
+                <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                        id="btnCancel" name="btnCancel" type="button" role="button"><span
+                  class="ui-button-text">Cancelar</span>
+                </button>
+                <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                        id="btnBack" name="btnBack" type="button" role="button" style="display: none;"><span
+                  class="ui-button-text">Anterior</span></button>
+                <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                        id="btnNext" name="btnNext" type="submit" [routerLink]="['/inscricaoProvisoriaClubeJogador1']"
+                        skipLocationChange (click)="createInscricaoClubeJogador2()"><span
+                  class="ui-button-text">Próximo</span></button>
+                <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                        id="btnKeepPlayer" name="btnKeepPlayer" type="button" role="button" style="display: none;"><span
+                  class="ui-button-text">Manter jogador</span></button>
+                <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                        id="btnSubmitForm" name="btnSubmitForm" type="button" role="button" style="display: none;"><span
+                  class="ui-button-text">Inserir</span></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+</div>
