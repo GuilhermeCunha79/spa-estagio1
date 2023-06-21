@@ -17,6 +17,8 @@ import {
 import {
   CreateInscricaoProvisoriaClubeJogador3Component
 } from "./create-inscricao-provisoria-clube-jogador3/create-inscricao-provisoria-clube-jogador3.component";
+import {ConsultarJogadorComponent} from "./consultar-jogador/consultar-jogador.component";
+import {ProcessoInscricao1Component} from "./processo-inscricao1/processo-inscricao1.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -33,7 +35,9 @@ const routes: Routes = [
       {path: 'inscricaoProvisoriaClubeJogador2', component: CreateInscricaoProvisoriaClubeJogador2Component},
       {path: 'inscricaoProvisoriaClubeJogador3', component: CreateInscricaoProvisoriaClubeJogador3Component},
       {path: 'processoInscricao', component: ProcessoInscricaoComponent},
-      {path: 'dialogo', component: Dialog}
+      {path: 'detalheProcesso', component: ProcessoInscricao1Component},
+      {path: 'dialogo', component: Dialog},
+      {path: 'consultarJogador', component: ConsultarJogadorComponent}
     ]
   },
 

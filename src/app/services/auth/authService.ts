@@ -177,4 +177,15 @@ export class AuthService {
     console.log(body);
     return this.httpClient.put(this.URL, body).pipe(map(this.extractData));
   }
+
+  redirectToHome(): void {
+    if (sessionStorage.getItem("user-data")) {
+      this.redirect('/home');
+    }
+  }
+
+  redirect(url: string): void {
+    this.router.navigate([url]).then();
+  }
+
 }

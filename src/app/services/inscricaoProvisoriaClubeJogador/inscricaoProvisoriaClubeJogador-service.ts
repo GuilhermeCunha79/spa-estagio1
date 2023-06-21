@@ -48,8 +48,52 @@ export class InscricaoProvisoriaClubeJogadorService {
     return this.httpClient.post(this.Url + '/confirm', body).pipe(map(this.extractData));
   }
 
-
   public extractData(res: any) {
     return res || {};
+  }
+
+
+  validateData(nome: string, nrDoc: string, nif: string, sexo: string, paisOrigem: string, nacionalidade: string, telefone: string,email: string): boolean {
+
+    let flag: boolean = true;
+
+    if(nrDoc.length>8){
+      this.log("ERROR: O 'Nº. doc de identificação' deve apenas conter 8 carateres numéricos.");
+      flag = false;
+    }
+
+    if(nif.length>9){
+      this.log("ERROR: O 'Nº identificação fiscal' deve apenas conter 9 carateres numéricos.");
+      flag = false;
+    }
+
+    if (sexo=="Selecione...") {
+      this.log("ERROR: O 'Sexo' deve ser preenchido.");
+      flag = false;
+    }
+
+    if (paisOrigem=="Selecione...") {
+      this.log("ERROR: O 'País de origem' deve ser preenchido.");
+      flag = false;
+    }
+
+    if (nacionalidade=="Selecione...") {
+      this.log("ERROR: A 'Nacionalidade' deve ser preenchida.");
+      flag = false;
+    }
+
+    if (telefone == null||telefone.length>9) {
+      this.log("ERROR: O 'Telefone' deve ser preenchido.");
+      flag = false;
+    }
+
+    if (nacionalidade==null) {
+      this.log("ERROR: O 'Email' deve ser preenchido.");
+      flag = false;
+    }
+
+    return flag;
+
+
   }
 }

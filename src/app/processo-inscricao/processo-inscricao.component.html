@@ -1,66 +1,136 @@
-<nav>
-  <div class="navigation-container">
-    <ul class="ui-cst-navigation first-level">
-      <li class="vertical-menu">
-        <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club"
-           onclick="return loadWindow('/InscricaoClubes/Club');">Início</a>
-      </li>
-      <li class="vertical-menu">
-        <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Filiation"
-           onclick="return loadWindow('/InscricaoClubes/Club/Filiation');">Filiação</a>
-      </li>
-      <li class="vertical-menu">
-        <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Team"
-           onclick="return loadWindow('/InscricaoClubes/Team');">Inscrição de equipas</a>
-      </li>
-      <li class="vertical-menu">
-        <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Create"
-           onclick="return loadWindow('/InscricaoClubes/Club/Create');">Criação</a>
-      </li>
-      <li class="vertical-menu">
-        <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Edit"
-           onclick="return loadWindow('/InscricaoClubes/Club/Edit');">Edição</a>
-      </li>
-      <li class="vertical-menu">
-        <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Process"
-           onclick="return loadWindow('/InscricaoClubes/Process');">Processos</a>
-      </li>
-      <li class="vertical-menu">
-        <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/ClubContactDetail"
-           onclick="return loadWindow('/InscricaoClubes/Club/ClubContactDetail');">Contatos do clube</a>
-      </li>
-      <li class="vertical-menu">
-        <a class="menu-link " data-badge-url="" href="/InscricaoClubes/VemJogar"
-           onclick="return loadWindow('/InscricaoClubes/VemJogar');">Vem Jogar</a>
-      </li>
-    </ul>
-    <div class="module-area ">
-      <button type="button" class="module-button ui-cst-misc-icon"></button>
-      <div class="module-menu-container" id="moduleMenuContainer" style="width: 1280px; height: 96px;">
-        <div
-          style="position: absolute; top: 0px; left: 0px; width: 1280px; height: 96px; transform-origin: 0px 0px; transform: scale(1);">
-          <div class="module-menu-container " style="position: relative; top: 0px; left: 0px; overflow: visible;">
-            <div u="slides" class="module-menu-slides" style="z-index: 0; position: absolute;">
-              <div style="position: absolute; z-index: 0; left: 0px; top: 0px;">
-                <div style="position: absolute; z-index: 0; left: 0px; top: 0px;"></div>
-              </div>
-              <div u="slides" class="module-menu-slides" style="z-index: 0; position: absolute; overflow: hidden;">
-                <div
-                  style="width: 106px; height: 96px; top: 0px; left: 0px; position: absolute; background-color: rgb(0, 0, 0); opacity: 0;"></div>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' xmlns="http://www.w3.org/1999/html">
 
+<div class="top-bar">
+  <header>
+    <div class="header">
+      <a href="/">
+        <img class="headerLogo" src="favicon.ico" alt="logo">
+      </a>
+      <h1 class="headerTitle">Score</h1>
+      <div class="user-box">
+        <span class="user-box-username">Ligado como:</span>
+        <span class="user-box-profile" title="Guilherme Cunha, A.F. ANGRA HEROÍSMO">{{roles[userData.role - 1]}}
+          , {{nomee}} </span>
+        <div class="user-box-profile-selector visible">
+        <span class="user-box-profile-image" title="Alterar perfil">
+            <img src="favicon.ico" title="Guilherme Cunha" class="image-preview-small" onerror="$(this).hide();">
+        </span>
+
+          <div class="user-box-profile-container " style="display: none;">
+            <div class="user-box-profile-user" data-url="/UserProfile">
+              <div class="user-box-profile-user-picture">
+                <img src="favicon.ico" title="Guilherme Cunha" class="image-preview">
+                <div class="image-preview default-image force-hidden" title="Guilherme Cunha"></div>
               </div>
-              <span u="arrowleft" class="jssora03l"></span>
-              <span u="arrowright" class="jssora03r"></span>
+              <div class="user-box-profile-user-login">
+                <span class="user-box-profile-title">Login:  </span>
+                <span class="user-box-profile-data" title="Guilherme Cunha">
+                       {{roles[userData.role - 1]}}
+                    </span>
+              </div>
+            </div>
+            <div class="user-separator"></div>
+            <div class="user-box-profile-accounts">
+              <div class="user-box-profile-accounts-title">Outras contas</div>
+              <ul class="user-box-profile-menu">
+                <li class="entity-account managed-entity" data-id="2656">
+                  <div class="managed-entity" data-id="2656">
+                    <img src="" title="F.C. DA CALHETA" class="image-preview">
+                  </div>
+                  <div class="image-preview default-image force-hidden managed-entity" title="F.C. DA CALHETA"
+                       data-id="2656"></div>
+                  <a href="#" class="managed-entity" data-id="2656" title="F.C. DA CALHETA">{{nomee}}</a>
+                </li>
+              </ul>
+            </div>
+            <div class="user-separator"></div>
+            <a href="/Account/ChangeUserPassword">Alterar password</a>
+            <div class="user-separator"></div>
+            <a href="/Support">Suporte</a>
+            <div class="user-separator"></div>
+            <a href="/Manual"> Manuais</a>
+            <div class="user-separator"></div>
+            <div class="logout">
+              <form action="/Account/LogOff" id="logoutForm" method="post"><input name="__RequestVerificationToken"
+                                                                                  type="hidden"
+                                                                                  value="pCcuH4ztLoMU3zxOfuAnEFA1gyvbF1Ft1NzzQiOQVTerpM0IaCftRGso7iU9xiSUycDQe7zIsrjNbouv_rKhDAmqWkBgcXFGlYMUltDi2fCMHqIU3JCq00Luowyx-Jhl0">
+                <div class="logout-container">
+                  <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                          id="btnLogout" name="btnLogout" type="submit" role="button"><span class="ui-button-text">Logout</span>
+                  </button>
+                  <div class="ui-cst-icon ui-cst-icon-turn-off"></div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
-  </div>
-</nav>
-<p>
+  </header>
+
+
+  <nav>
+    <div class="navigation-container">
+      <ul class="ui-cst-navigation first-level">
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url=""
+             [routerLink]="['/home']">Início</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Filiation"
+             onclick="return loadWindow('/InscricaoClubes/Club/Filiation');">Filiação</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Team"
+             onclick="return loadWindow('/InscricaoClubes/Team');">Inscrição de equipas</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Create"
+             onclick="return loadWindow('/InscricaoClubes/Club/Create');">Criação</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Edit"
+             onclick="return loadWindow('/InscricaoClubes/Club/Edit');">Edição</a>
+        </li>
+        <li class="vertical-menu">
+          <a [routerLink]="['/processoInscricao']">Processos</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/ClubContactDetail"
+             onclick="return loadWindow('/InscricaoClubes/Club/ClubContactDetail');">Contatos do clube</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/VemJogar"
+             onclick="return loadWindow('/InscricaoClubes/VemJogar');">Vem Jogar</a>
+        </li>
+      </ul>
+      <div class="module-area ">
+        <button type="button" class="module-button ui-cst-misc-icon"></button>
+        <div class="module-menu-container" id="moduleMenuContainer" style="width: 1280px; height: 96px;">
+          <div
+            style="position: absolute; top: 0px; left: 0px; width: 1280px; height: 96px; transform-origin: 0px 0px; transform: scale(1);">
+            <div class="module-menu-container " style="position: relative; top: 0px; left: 0px; overflow: visible;">
+              <div u="slides" class="module-menu-slides" style="z-index: 0; position: absolute;">
+                <div style="position: absolute; z-index: 0; left: 0px; top: 0px;">
+                  <div style="position: absolute; z-index: 0; left: 0px; top: 0px;"></div>
+                </div>
+                <div u="slides" class="module-menu-slides" style="z-index: 0; position: absolute; overflow: hidden;">
+                  <div
+                    style="width: 106px; height: 96px; top: 0px; left: 0px; position: absolute; background-color: rgb(0, 0, 0); opacity: 0;"></div>
+
+                </div>
+                <span u="arrowleft" class="jssora03l"></span>
+                <span u="arrowright" class="jssora03r"></span>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
 
 <div class="body">
   <section>
@@ -69,156 +139,6 @@
         <h2>Processos</h2>
       </header>
       <div class="content scoreTable">
-        <div class="grid-search-panel">
-          <div class="grid-search-fields-wrapper">
-              <span class="form-field-row">
-                <label>Época:</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-            <span class="form-field-row">
-                <label>Associação:</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-            <span class="form-field-row">
-                <label>Clube:</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-            <span class="form-field-row">
-                <label>Tipo processo:</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-
-            <span class="form-field-row">
-                <label>Categoria:</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-
-            <span class="form-field-row">
-                <label>Estatuto FPF:</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-
-            <span class="form-field-row">
-                <label>Nº de licenca:</label>
-                <span class="form-field-wrapper">
-                 <input class="text-box single-line" data-val="true" data-val-number="The field Nº de licença: must be a number." data-val-regex="Número de Licença não é válido." data-val-regex-pattern="^[0-9]+(\.[0-9]+)?$" id="LicenseNumber" name="LicenseNumber" type="number" value="">
-                </span>
-              </span>
-
-            <span class="form-field-row">
-                <label>Nº de processo:</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-
-            <span class="form-field-row">
-                <label>Nome:</label>
-                <span class="form-field-wrapper">
-                 <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="FullName_container" name="FullName.container"><input class="ui-cst-textbox-input" id="FullName" name="FullName" type="text"></div>
-                </span>
-              </span>
-
-            <span class="form-field-row">
-                <label>Divisão:</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-
-            <span class="form-field-row">
-                <label>De:</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-
-            <span class="form-field-row">
-                <label>Até</label>
-                <span class="form-field-wrapper">
-                  <div class="select2-container ui-cst-dropdown field-container">
-
-                  </div>
-                </span>
-              </span>
-
-            <span class="form-field-row">
-                    <label for="Urgent">Urgente:</label>
-                    <span class="form-field-wrapper">
-                        <input class="check-box" data-val="true" data-val-required="The Urgente: field is required."
-                               id="Urgent" name="Urgent" type="checkbox" value="true"><input name="Urgent" type="hidden"
-                                                                                             value="false">
-                    </span>
-                </span>
-
-            <span class="form-field-row">
-                    <label for="YouthContract">Contrato formação:</label>
-                    <span class="form-field-wrapper">
-                        <input class="check-box" data-val="true"
-                               data-val-required="The Contrato formação: field is required." id="YouthContract"
-                               name="YouthContract" type="checkbox" value="true"><input name="YouthContract"
-                                                                                        type="hidden" value="false">
-                    </span>
-                </span>
-
-            <span class="form-field-row">
-                    <label>Modalidade:</label>
-                    <span class="form-field-wrapper">
-
-
-                    </span>
-                </span>
-
-            <span class="form-field-row">
-                    <label for="HasPriorTransferAgreement">Inscrição antecedida de acordo de transferência:</label>
-                    <span class="form-field-wrapper">
-                        <input class="check-box" data-val="true"
-                               data-val-required="The Inscrição antecedida de acordo de transferência: field is required."
-                               id="HasPriorTransferAgreement" name="HasPriorTransferAgreement" type="checkbox"
-                               value="true"><input name="HasPriorTransferAgreement" type="hidden" value="false">
-                    </span>
-                </span>
-
-            <div class="form-buttons-panel">
-              <button
-                class="grid-search-button ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                id="btnSearch" name="btnSearch" type="button" role="button"><span class="ui-button-text">Pesquisa</span>
-              </button>
-            </div>
-
-          </div>
-
-        </div>
 
         <div class="ui-cst-tabs content ui-tabs ui-widget ui-widget-content ui-corner-all">
           <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
@@ -245,6 +165,7 @@
               Documentos CIT</a></li>
             <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-1"
                 aria-labelledby="ui-id-5" aria-selected="false" aria-expanded="false"><a href="#tabs-1"
+                                                                                         class="ui-tabs-anchor"
                                                                                          class="ui-tabs-anchor"
                                                                                          role="presentation"
                                                                                          tabindex="-1" id="ui-id-5">Menores
@@ -298,6 +219,9 @@
                   <th class="sorting_disabled" tabindex="0" aria-label="Estado" style="width: 150px;">
                     Estado
                   </th>
+                  <th class="sorting_disabled" tabindex="0" aria-label="Estado">
+                    Aprovar
+                  </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -315,6 +239,10 @@
                   <td>{{delivery.dataSubs}}</td>
                   <td>{{delivery.dataRegisto}}</td>
                   <td>{{delivery.estado}}</td>
+                  <td>               <button
+                    class="grid-search-button ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                    id="btnSearc1h" name="btnSearch" type="button" (click)="getLicenca(delivery.licenca,delivery.nprocesso,delivery.nomeProcesso,delivery.nome,delivery.tipoFutebol,delivery.categoria,delivery.divisao,delivery.classe,delivery.dataSubs,delivery.dataRegisto,delivery.estado,delivery.clube)" role="button" [routerLink]="['/detalheProcesso']"><span class="ui-button-text">+</span>
+                  </button></td>
                 </tr>
                 </tbody>
               </table>

@@ -73,8 +73,8 @@
     <div class="navigation-container">
       <ul class="ui-cst-navigation first-level">
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club"
-             onclick="return loadWindow('/InscricaoClubes/Club');">Início</a>
+          <a class="menu-link " data-badge-url=""
+             [routerLink]="['/home']">Início</a>
         </li>
         <li class="vertical-menu">
           <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Filiation"
@@ -237,7 +237,7 @@
 
                     <td>
                       <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
-                        <img [src]="imageUrl" alt="">
+                        <img [src]="imageUrl" class="" [alt]="">
                       </div>
                     </td>
 
@@ -267,11 +267,11 @@
                   </tbody>
                 </table>
               </div>
-
+              <div class="form-buttons-panel" id="wizardButtons1">
               <button class="button" type="submit"
-                      (click)="createInscricaoClubeJogador();convertFileToBase641();convertFileToBase64()">Submit
+                      (click)="createInscricaoClubeJogador();convertFileToBase641();convertFileToBase64()">Submeter
               </button>
-
+              </div>
 
 
               <div class="form-field-row  mandatory-field">
@@ -319,7 +319,7 @@
                 <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="validadeDoc1"
                      name="validadeDocId.container" style="height: 23px;">
                   <input id="validadeDocId" name="validadeDocId" style="width: 200px " type="text"
-                         [matDatepicker]="picker" class="" [(ngModel)]="validadeDocId" readonly>
+                         [matDatepicker]="picker" class="" [placeholder]="validadeDocId">
                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </div>
@@ -345,9 +345,8 @@
 
               <div class="form-field-row quarter-width  mandatory-field" style="margin-bottom: 3px">
                 <label>Data de nascimento:</label>
-                <input [(ngModel)]="dataNascimento" id="dataNascimento" name="dataNascimento" style="width: 200px"
-                       type="text"
-                       [matDatepicker]="picker1" class="" readonly>
+                <input  id="dataNascimento" name="dataNascimento" style="width: 200px"
+                       type="text" [matDatepicker]="picker1"  [placeholder]="dataNascimento">
 
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>

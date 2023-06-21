@@ -24,6 +24,10 @@ export class PessoaService {
     return this.httpClient.get(this.Url + '/ByIdentifier/' + codOperacao).pipe(map(this.extractData));
   }
 
+  getPessoaByNrId(codOperacao: string): Observable<any> {
+    return this.httpClient.get(this.Url + '/NrIdentificacao/' + codOperacao).pipe(map(this.extractData));
+  }
+
 
   createPessoa(nome:string,dataNascimento:string,tipoGenero:string,email:string,nrIdentificacao:string,nascencaPais:string,nacionalidadePais:string,telefone:string,concelhoResidencia:string): Observable<any> {
     const body = {

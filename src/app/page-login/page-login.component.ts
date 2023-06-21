@@ -25,6 +25,7 @@ export class PageLoginComponent implements OnInit {
   login(): void {
     this.signupService.getUser(this.email, this.password)?.subscribe(obj => {
       sessionStorage.setItem("user-data", JSON.stringify(obj));
+      this.signupService.redirectToHome();
     });
   }
 }

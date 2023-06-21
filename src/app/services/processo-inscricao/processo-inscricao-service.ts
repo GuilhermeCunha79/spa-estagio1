@@ -41,8 +41,21 @@ export class ProcessoInscricaoService {
       "dataSubscricao":dataSubscricao
     }
     console.log(body);
-    return this.httpClient.put(this.Url + 'ByIdentifier' + codOperacao,body).pipe(map(this.extractData));
+    return this.httpClient.put(this.Url + '/CodOperacao1/' + codOperacao,body).pipe(map(this.extractData));
   }
+
+  deleteProcessoInscricao(codOperacao: string, tipoProcesso:string , estado : string, epocaDesportiva:string, dataRegisto:string, dataSubscricao:string): Observable<any>{
+    const body= {
+      "tipoProcesso": tipoProcesso,
+      "estado": estado,
+      "epocaDesportiva": epocaDesportiva,
+      "dataRegisto": dataRegisto,
+      "dataSubscricao":dataSubscricao
+    }
+    console.log(body);
+    return this.httpClient.delete(this.Url + codOperacao + '/hard').pipe(map(this.extractData));
+  }
+
 
 
   public extractData(res: any) {

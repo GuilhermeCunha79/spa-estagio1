@@ -24,7 +24,7 @@ export class JogadorService
   }
 
   getJogadoresByLicenca(licenca:string): Observable<any>{
-    return this.httpClient.get(this.Url +  'ByIdentifier' + licenca).pipe(map(this.extractData))
+    return this.httpClient.get(this.Url +  '/Licenca/' + licenca).pipe(map(this.extractData))
   }
 
   createValidJogador( estatutoFpF:string, identificadorPessoa:string, identificadorEquipa:string,status:string) {

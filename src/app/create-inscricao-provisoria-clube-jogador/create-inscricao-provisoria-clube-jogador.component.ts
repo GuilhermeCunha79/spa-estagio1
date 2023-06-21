@@ -12,7 +12,6 @@ import {ErrorStateMatcher} from "@angular/material/core";
 import {AfterViewChecked, ChangeDetectorRef} from '@angular/core'
 import {NacionalidadeService} from "../services/nacionalidade/nacionalidade-service";
 import {PaisNascencaService} from "../services/paisNascenca/paisNascenca-service";
-import {DatePipe} from "@angular/common";
 import {SharedServiceComponent} from "../shared-service/shared-service.component";
 import {ClubeService} from "../services/clube/clube-service";
 import {NgxSpinnerService} from "ngx-spinner";
@@ -43,11 +42,11 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
 
   nome: string;
   tipoDoc: string;
-  validadeDocId: string;
+  validadeDocId: string=" ";
   nif: string;
   sexo: string;
   estatutoFpF: string;
-  dataNascimento: string;
+  dataNascimento: string="";
   concelhoResidencia: string;
   telefone: string;
   email: string;
@@ -60,26 +59,29 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   divisao: string;
   categoria: string;
 
+
+
   dataAgora: Date;
   nacionalidade: string;
   paisNascenca: string;
-  permissions: number[] = [1,2];
+  permissions: number[] = [1, 2];
 
   userData: any;
   email1: string;
-  nomee:string;
+  nomee: string;
 
   roles: string[] = [
     "Colaborador de Associação",
     "Colaborador de Clube"
   ];
 
-  constructor(public inscricaoClubeJogadorService: InscricaoProvisoriaClubeJogadorService,private spinner: NgxSpinnerService, private utilizadorSerice: UtilizadorService,
+  constructor(public inscricaoClubeJogadorService: InscricaoProvisoriaClubeJogadorService, private spinner: NgxSpinnerService, private utilizadorSerice: UtilizadorService,
               private domSani: DomSanitizer, private pessoaService: PessoaService, private readonly changeDetectorRef: ChangeDetectorRef,
-              private nacionalidadeService: NacionalidadeService, private paisNascencaService: PaisNascencaService, private sharedService: SharedServiceComponent,private clubeService:ClubeService) {
+              private nacionalidadeService: NacionalidadeService, private paisNascencaService: PaisNascencaService, private sharedService: SharedServiceComponent, private clubeService: ClubeService) {
   }
 
   ngOnInit(): void {
+
     this.utilizadorSerice.checkPermission(this.permissions);
     this.nacionalidadeService.getNacionalidades().subscribe((data: string[]) => this.paisesNacionalidade = data.map((item: any) => item.nacionalidadePais));
     this.paisNascencaService.getPaisesNascenca().subscribe((data: string[]) => this.paisesNascenca = data.map((item: any) => item.nascencaPais));
@@ -87,18 +89,18 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
 
     if (sessionStorage.getItem("user-data")) {
       this.userData = JSON.parse(sessionStorage.getItem("user-data")!);
-      this.sharedService.userData=this.userData;
+      this.sharedService.userData = this.userData;
       this.email1 = this.userData.emailUtilizador;
-      this.sharedService.email1=this.email1;
-      if(this.userData.codigoClube!=0) {
+      this.sharedService.email1 = this.email1;
+      if (this.userData.codigoClube != 0) {
         this.clubeService.getClubeByCod(this.userData.codigoClube).subscribe(data =>
           this.nomee = data.nomeClube
         );
-        this.sharedService.nomee= this.nomee;
-      }else{
-        this.nomee=this.userData.nomeAssociacao;
+        this.sharedService.nomee = this.nomee;
+      } else {
+        this.nomee = this.userData.nomeAssociacao;
       }
-      this.sharedService.nomee= this.nome;
+      this.sharedService.nomee = this.nome;
     }
 
     this.nome = this.sharedService.nome;
@@ -121,7 +123,11 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
     this.categoria = this.sharedService.categoria;
     this.nacionalidade = this.sharedService.nacionalidade;
     this.paisNascenca = this.sharedService.paisNascenca;
+
+    this.validadeDocId=" ";
+    this.dataNascimento=" ";
   }
+
   public onSelectNewFile($event: Event): void {
 
     const inputElement = $event.target as HTMLInputElement;
@@ -171,8 +177,8 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   public createInscricaoClubeJogador(): void {
 
     this.spinner.show();
-   // setTimeout(() => {
-      // Recebeu a resposta, oculta o spinner
+    // setTimeout(() => {
+    // Recebeu a resposta, oculta o spinner
 
     this.inscricaoClubeJogadorService.createInscricaoProvisoriaClubeJogador(this.base64, this.base641).subscribe(data => {
       this.inscricao = data;
@@ -196,56 +202,45 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
       this.divisao = this.inscricao.divisao;
       this.categoria = this.inscricao.categoria;
       this.dataAgora = data;
-
-      console.log( this.validadeDocId);
-      console.log( this.dataNascimento);
     });
-     // this.spinner.hide();
-   // }, 20000000);
+    // this.spinner.hide();
+    // }, 20000000);
 
     //setTimeout(window.location.reload.bind(window.location), 200)
   }
 
 
-  public createInscricaoClubeJogador1(): void {
-    this.inscricaoClubeJogadorService.createInscricaoProvisoriaClubeJogador1(this.nome, this.tipoDoc, this.nrIdentificacao, this.checkDigit, this.validadeDocId, this.estatutoFpF, this.nif, this.sexo, this.dataNascimento, this.paisNascenca, this.nacionalidade, this.concelhoResidencia, this.telefone, this.email).subscribe(data => {
-      this.inscricao = data
-    });
-    setTimeout(window.location.reload.bind(window.location), 200)
+  public createInscricaoClubeJogador2(): void | null {
+    if (this.inscricaoClubeJogadorService.validateData(this.nome, this.nrIdentificacao, this.nif, this.sexo, this.paisNascenca, this.nacionalidade, this.telefone, this.email)) {
+      this.sharedService.nome = this.nome;
+      this.sharedService.tipoDoc = this.tipoDoc;
+      this.sharedService.nrIdentificacao = this.nrIdentificacao;
+      this.sharedService.validadeDocId = this.validadeDocId;
+      this.sharedService.nif = this.nif;
+      this.sharedService.sexo = this.sexo;
+      this.sharedService.validadeDocId = this.validadeDocId;
+      this.sharedService.dataNascimento = this.dataNascimento;
+      this.sharedService.nacionalidade = this.nacionalidade;
+      this.sharedService.concelhoResidencia = this.concelhoResidencia;
+      this.sharedService.estatutoFpF = this.estatutoFpF;
+      this.sharedService.telefone = this.telefone;
+      this.sharedService.email = this.email;
+      this.sharedService.codClube = this.codClube;
+      this.sharedService.nomeClube = this.nomeClube;
+      this.sharedService.nomeAssociacao = this.nomeAssociacao;
+      this.sharedService.modalidade = this.modalidade;
+      this.sharedService.divisao = this.divisao;
+      this.sharedService.categoria = this.categoria;
+      this.sharedService.paisNascenca = this.paisNascenca;
+      this.sharedService.nomeBoletim = this.nomeFicheiro;
+      this.sharedService.nomeDocId = this.nomeFicheiro1;
+      this.sharedService.imageUrl = this.imageUrl;
+      this.sharedService.imageUrl1 = this.imageUrl1;
+
+
+    } else return null;
+    //setTimeout(window.location.reload.bind(window.location), 200)
   }
 
 
-  public createInscricaoClubeJogador2(): void {
-
-    this.sharedService.nome = this.nome;
-    this.sharedService.tipoDoc = this.tipoDoc;
-    this.sharedService.nrIdentificacao = this.nrIdentificacao;
-    this.sharedService.validadeDocId = this.validadeDocId;
-    this.sharedService.nif = this.nif;
-    this.sharedService.sexo = this.sexo;
-    this.sharedService.validadeDocId = this.validadeDocId;
-    this.sharedService.dataNascimento = this.dataNascimento;
-    this.sharedService.nacionalidade = this.nacionalidade;
-    this.sharedService.concelhoResidencia = this.concelhoResidencia;
-    this.sharedService.estatutoFpF = this.estatutoFpF;
-    this.sharedService.telefone = this.telefone;
-    this.sharedService.email = this.email;
-    this.sharedService.codClube = this.codClube;
-    this.sharedService.nomeClube = this.nomeClube;
-    this.sharedService.nomeAssociacao = this.nomeAssociacao;
-    this.sharedService.modalidade = this.modalidade;
-    this.sharedService.divisao = this.divisao;
-    this.sharedService.categoria = this.categoria;
-    this.sharedService.paisNascenca = this.paisNascenca;
-    this.sharedService.nomeBoletim=this.nomeFicheiro;
-    this.sharedService.nomeDocId=this.nomeFicheiro1;
-    this.sharedService.imageUrl=this.imageUrl;
-    this.sharedService.imageUrl1=this.imageUrl1;
-
-
-  };
-
-  //setTimeout(window.location.reload.bind(window.location), 200)
 }
-
-

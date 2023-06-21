@@ -45,7 +45,7 @@ export class HomepageComponent implements OnInit {
       }else{
         this.nomee=this.userData.nomeAssociacao;
       }
-      this.sharedService.nomee= "this.nomee";
+      this.sharedService.nomee= this.nomee;
     }
   }
 

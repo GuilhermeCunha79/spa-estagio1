@@ -6,7 +6,7 @@ export class ProcessoInscricao{
   tipoFutebol:string;
   categoria:string;
   divisao:string;
-  classe:string;
+  classe:string="Amador";
   nomeProcesso:string;
   estado:string;
   dataRegisto:string;

@@ -807,6 +807,13 @@ a {
 
 }
 
+.imgEntityPreview {
+  z-index: 20000;
+  position: fixed;
+  border: 1px solid #99cc00;
+  font-size: 0;
+}
+
 .top-bar header .header .user-box-profile-selector {
   /* cursor: pointer; */
   display: inline-block;
@@ -835,6 +842,10 @@ a {
   border: 2px solid white;
   background: white;
   margin-top: 6px;
+}
+
+table thead th, table tbody th.extraPadding {
+  padding: 10px 5px;
 }
 
 .top-bar header .header .user-box-profile-selector .user-box-profile-container {
@@ -866,31 +877,117 @@ a {
   display: block;
 }
 
+
+.loginForm .formArea .loginTitle h1 {
+  font-size: 16pt;
+  font-weight: bold;
+  color: #7f8c8d;
+  margin: 0;
+  padding: 0;
+}
+
 .loginForm {
   background-color: #DDDDDD;
-
-  left: 42%;
-
+  left: 44%;
   position: fixed;
+  bottom: 200px;
+  width: 218px;
   bottom: 400px;
-  width: 300px;
-
-  min-height: 478px;
+  min-height: 335px;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
   overflow: auto;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
-  border-radius: 12px;
+  border-radius: 7px;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
+.content-container .playerDetailHeaderName {
+  text-align: left;
+  color: #99cc00;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.playerHeader-height {
+  min-height: 210px;
+}
+
+.body .content-container .content {
+  background: #ffffff;
+  padding: 20px 20px;
+}
+
+.content-container .playerDetailHeader {
+  display: table;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.content-container .playerDetailHeaderCell {
+  display: table-cell;
+  width: 18%;
+  padding: 10px 10px;
+}
+
+.content-container .playerDetailLabel {
+  display: table-cell;
+  font-weight: bold;
+  width: 15%;
+  padding: 10px 10px;
+}
+
+.content-container .playerDetailHeaderRow {
+  display: table-row;
+  width: 100%;
+}
+
+.content-container .playerDetailLabel {
+  display: table-cell;
+  font-weight: bold;
+  width: 15%;
+  padding: 10px 10px;
+}
+
+.gridSpacer {
+  margin-top: 10px;
+}
+
+.content-container .playerDetailHeaderContainer {
+  display: inline-block;
+  width: 1050px;
+  margin: 0px 20px;
+  vertical-align: top;
+}
+
+.content-container .previewPhoto {
+  display: inline-block;
+  max-width: 400px;
+}
+
+.content-container .detailHeader {
+  display: inline-block;
+  width: 300px;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.content-container .previewPhoto .userPhoto {
+  width: 80px;
+}
+
+.content-container .previewPhoto img {
+  width: 135px;
+  height: auto;
+}
+
 .loginForm .formArea .formItem.loginTitle {
-  margin: 50px;
+  margin: 30px;
   padding: 0;
   text-align: center;
 }
@@ -907,18 +1004,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .loginForm .formArea .loginLogo {
   text-align: center;
-  margin: 50px 0;
-}
-
-.loginForm .formArea .formItem.loginTitle {
-  margin: 50px;
-  padding: 0;
-  text-align: center;
+  margin: 35px 0;
 }
 
 .loginForm .formArea .formItem .loginField {
   background-color: #7f8c8d;
-  height: 40px;
+  height: 27px;
   width: 100%;
 }
 
@@ -930,19 +1021,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   position: absolute;
 }
 
-.loginForm .formArea .formItem .loginField {
-  background-color: #7f8c8d;
-  height: 40px;
-  width: 100%;
-}
 .loginForm .formArea {
-  margin: 10px 46px 0 46px;
+  margin: 10px 30px 0 30px;
   padding: 0;
   font-family: 'Lato Regular';
 }
 
 .loginForm .formArea .formItem input {
-  font-size: 11pt;
+  font-size: 8pt;
   color: #CCCCCC;
   background-color: transparent;
   border: 0;
@@ -953,7 +1039,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .ui-login-icon-username {
   background-position: -14px 122px;
-  margin: 9px 10px;
+  margin: 2px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato Bold', Arial, Verdana, Helvetica, Sans-Serif;
+  font-weight: bold;
 }
 
 .ui-login-icon {
@@ -967,7 +1058,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 .loginForm .formArea .formItem .loginField div.ui-cst-textbox {
-  width: 156px;
+  width: 110px;
   margin-right: 10px;
   height: 40px;
   display: inline-block;
@@ -976,20 +1067,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .ui-login-icon-password {
   background-position: -36px 122px;
-  margin: 9px 10px;
+  margin: 2px 6px;
 }
 
 .loginForm .formArea .formItem .loginField .form-control {
-  width: 156px;
+  width: 110px;
   margin-right: 10px;
-  height: 40px;
+  height: 30px;
   display: inline-block;
   position: absolute;
 }
 
+
+
 .loginForm .formArea .formItem {
   margin-bottom: 14px;
   padding: 0;
+}
+
+.ui-cst-button {
+  min-width: 125px;
 }
 
 .loginForm .formArea .formItem .loginButton {
@@ -1000,11 +1097,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   font-weight: 700;
   font-size: 12pt;
   width: 100%;
-  height: 40px;
+  height: 27px;
 }
 
 .loginForm .formArea .formItem input.ui-cst-textbox-input {
-  height: 40px;
+  height: 30px;
 }
 
 .ui-cst-navigation.first-level {
@@ -1843,7 +1940,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .scoreTable table thead th.sorting_asc,
 .scoreTable table thead th.sorting_desc {
   cursor: pointer;
-  padding-right: 25px;
+  padding-right: 5px;
   /* extra padding to avoid the text overlapping sorting images */
 }
 .scoreTable .ui-jqgrid .ui-jqgrid-htable th > .ui-jqgrid-sortable .s-ico .ui-grid-ico-sort.ui-icon-asc {
@@ -2565,12 +2662,28 @@ input[type=text][readonly], input[type=number][readonly], input[type=password][r
   padding-bottom: 5px;
 }
 
+.content-container .detailHeader h2 {
+  text-align: left;
+  color: #99cc00;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+
 .ffr-four-columns > label {
   display: inline !important;
 }
 
 .ui-accordion .ui-accordion-content {
   padding: 1em;
+}
+
+form fieldset label, .form-field-row > label {
+  font-family: 'Lato Bold', Arial, Verdana, Helvetica, Sans-Serif;
+  margin-right: 10px;
+  text-align: left;
+  vertical-align: top;
+  width: 150px;
 }
 
 form fieldset label, .form-field-row > label {

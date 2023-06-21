@@ -1,0 +1,424 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' xmlns="http://www.w3.org/1999/html">
+
+
+<div class="top-bar">
+  <header>
+    <div class="header">
+      <a href="/">
+        <img class="headerLogo" src="favicon.ico" alt="logo">
+      </a>
+      <h1 class="headerTitle">Score</h1>
+      <div class="user-box">
+        <span class="user-box-username">Ligado como:</span>
+        <span class="user-box-profile" title="Guilherme Cunha, A.F. ANGRA HEROÍSMO">{{roles[userData.role - 1]}}
+          , {{nomee}} </span>
+        <div class="user-box-profile-selector visible">
+        <span class="user-box-profile-image" title="Alterar perfil">
+            <img src="favicon.ico" title="Guilherme Cunha" class="image-preview-small" onerror="$(this).hide();">
+        </span>
+
+          <div class="user-box-profile-container " style="display: none;">
+            <div class="user-box-profile-user" data-url="/UserProfile">
+              <div class="user-box-profile-user-picture">
+                <img src="favicon.ico" title="Guilherme Cunha" class="image-preview">
+                <div class="image-preview default-image force-hidden" title="Guilherme Cunha"></div>
+              </div>
+              <div class="user-box-profile-user-login">
+                <span class="user-box-profile-title">Login:  </span>
+                <span class="user-box-profile-data" title="Guilherme Cunha">
+                       {{roles[userData.role - 1]}}
+                    </span>
+              </div>
+            </div>
+            <div class="user-separator"></div>
+            <div class="user-box-profile-accounts">
+              <div class="user-box-profile-accounts-title">Outras contas</div>
+              <ul class="user-box-profile-menu">
+                <li class="entity-account managed-entity" data-id="2656">
+                  <div class="managed-entity" data-id="2656">
+                    <img src="" title="F.C. DA CALHETA" class="image-preview">
+                  </div>
+                  <div class="image-preview default-image force-hidden managed-entity" title="F.C. DA CALHETA"
+                       data-id="2656"></div>
+                  <a href="#" class="managed-entity" data-id="2656" title="F.C. DA CALHETA">{{nomee}}</a>
+                </li>
+              </ul>
+            </div>
+            <div class="user-separator"></div>
+            <a href="/Account/ChangeUserPassword">Alterar password</a>
+            <div class="user-separator"></div>
+            <a href="/Support">Suporte</a>
+            <div class="user-separator"></div>
+            <a href="/Manual"> Manuais</a>
+            <div class="user-separator"></div>
+            <div class="logout">
+              <form action="/Account/LogOff" id="logoutForm" method="post"><input name="__RequestVerificationToken"
+                                                                                  type="hidden"
+                                                                                  value="pCcuH4ztLoMU3zxOfuAnEFA1gyvbF1Ft1NzzQiOQVTerpM0IaCftRGso7iU9xiSUycDQe7zIsrjNbouv_rKhDAmqWkBgcXFGlYMUltDi2fCMHqIU3JCq00Luowyx-Jhl0">
+                <div class="logout-container">
+                  <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                          id="btnLogout" name="btnLogout" type="submit" role="button"><span class="ui-button-text">Logout</span>
+                  </button>
+                  <div class="ui-cst-icon ui-cst-icon-turn-off"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="navigation-container">
+      <ul class="ui-cst-navigation first-level">
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club"
+             [routerLink]="['/home']">Início</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Filiation"
+             onclick="return loadWindow('/InscricaoClubes/Club/Filiation');">Filiação</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Team"
+             onclick="return loadWindow('/InscricaoClubes/Team');">Inscrição de equipas</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Create"
+             onclick="return loadWindow('/InscricaoClubes/Club/Create');">Criação</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Edit"
+             onclick="return loadWindow('/InscricaoClubes/Club/Edit');">Edição</a>
+        </li>
+        <li class="vertical-menu">
+          <a [routerLink]="['/processoInscricao']">Processos</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/ClubContactDetail"
+             onclick="return loadWindow('/InscricaoClubes/Club/ClubContactDetail');">Contatos do clube</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/VemJogar"
+             onclick="return loadWindow('/InscricaoClubes/VemJogar');">Vem Jogar</a>
+        </li>
+      </ul>
+      <div class="module-area ">
+        <button type="button" class="module-button ui-cst-misc-icon"></button>
+        <div class="module-menu-container" id="moduleMenuContainer" style="width: 1280px; height: 96px;">
+          <div
+            style="position: absolute; top: 0px; left: 0px; width: 1280px; height: 96px; transform-origin: 0px 0px; transform: scale(1);">
+            <div class="module-menu-container " style="position: relative; top: 0px; left: 0px; overflow: visible;">
+              <div u="slides" class="module-menu-slides" style="z-index: 0; position: absolute;">
+                <div style="position: absolute; z-index: 0; left: 0px; top: 0px;">
+                  <div style="position: absolute; z-index: 0; left: 0px; top: 0px;"></div>
+                </div>
+                <div u="slides" class="module-menu-slides" style="z-index: 0; position: absolute; overflow: hidden;">
+                  <div
+                    style="width: 106px; height: 96px; top: 0px; left: 0px; position: absolute; background-color: rgb(0, 0, 0); opacity: 0;"></div>
+
+                </div>
+                <span u="arrowleft" class="jssora03l"></span>
+                <span u="arrowright" class="jssora03r"></span>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </nav>
+  <p>
+
+  <div class="body">
+
+    <section>
+      <div class="content-container">
+        <header style="margin-top: 14px;">
+          <h2 style="margin-top: 12px;">Nova 1ª inscrição de amadores</h2>
+        </header>
+
+        <div class="content form">
+
+          <ul class="wizard-steps-bar">
+            <li>
+
+              <div class="wizard-step wizard-step-visited" data-stepnumber="1">
+    <span class="wizard-step-content" data-stepnumber="1">
+        <span class="wizard-step-number" id="wizard_step_1">1</span>
+        <label class="wizard-step-desc" style="color: rgb(0, 0, 0);">Novo Jogador</label>
+    </span>
+              </div>
+            </li>
+            <li>
+
+              <div class="wizard-step wizard-step-visited" data-stepnumber="2">
+    <span class="wizard-step-content" data-stepnumber="2">
+        <span class="wizard-step-number" id="wizard_step_2">2</span>
+        <label class="wizard-step-desc" style="color: rgb(0, 0, 0);">Inscrição</label>
+    </span>
+              </div>
+            </li>
+            <li>
+
+              <div class="wizard-step wizard-step-active" data-stepnumber="3">
+    <span class="wizard-step-content" data-stepnumber="3">
+        <span class="wizard-step-number" id="wizard_step_3">3</span>
+        <label class="wizard-step-desc" style="color: rgb(0, 0, 0);">Documentos</label>
+    </span>
+              </div>
+            </li>
+            <li>
+
+              <div class="wizard-step" data-stepnumber="4">
+    <span class="wizard-step-content" data-stepnumber="4">
+        <span class="wizard-step-number" id="wizard_step_4">4</span>
+        <label class="wizard-step-desc">Resumo</label>
+    </span>
+              </div>
+
+            </li>
+          </ul>
+
+          <div id="wizardBody">
+            <div id="wizardBodyContent" class="form">
+              <div class="scoreForm">
+                <div class="form-field-row half-width">
+                  <label for="Name" style="    padding-left: 57px;">Nome:</label>
+                  <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="Name_container"
+                       name="Name.container">
+                    <input class="ui-cst-textbox-input" id="Name" name="Name" readonly="readonly" type="text"
+                           [(ngModel)]="nome" disabled="">
+                  </div>
+                </div>
+
+                <div class="content scoreTable">
+                  <div class="grid-add-record-bar">
+                    <button class="ui-cst-icon ui-cst-icon-add-grid addRow"
+                            title="Anexar / Atualizar documento"></button>
+                  </div>
+
+
+                  <div id="processGrid_wrapper" class="dataTables_wrapper no-footer">
+                    <table id="processGrid" class="dataTable no-footer" role="grid" style="width: 100%;">
+                      <thead>
+
+                      <tr role="row">
+                        <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                            aria-label="Nome: activate to sort column ascending" style="width: 200px;">Tipo de Documento
+                        </th>
+
+                        <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                            aria-label="Nome: activate to sort column ascending" style="width: 110px;">Nome do ficheiro
+                        </th>
+
+                        <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                            aria-label="Nome: activate to sort column ascending" style="width: 40px;">Provisório
+                        </th>
+
+                        <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                            aria-label="Nome: activate to sort column ascending" style="width: 160px;">Validade
+                        </th>
+
+                        <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                            aria-label="Nome: activate to sort column ascending" style="width: 100px;">Ações
+                        </th>
+
+                        <th class="sorting" tabindex="0" aria-controls="processGrid" rowspan="1" colspan="1"
+                            aria-label="Nome: activate to sort column ascending" style="width: 100px;">Pré-visualizar
+                        </th>
+
+
+                      </tr>
+                      </thead>
+
+                      <tbody>
+
+                      <tr>
+                        <td>Certidão de Nascimento</td>
+                        <td><input [(ngModel)]="nomeFicheiro" style="text-align: center; color: #808080;width: 250px"
+                                   disabled=""></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <label for="file"> <i class='bx bxs-cloud-upload icon'></i>
+                          </label>
+                          <input type="file" id="file11" name="myfile"
+                                 accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                                 hidden (change)="onSelectNewFile($event)"><br><br>
+                        </td>
+                        <td>
+                          <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
+                            <img [src]="imageUrl5" alt="">
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Certidão de seguro de acidentes pessoais</td>
+                        <td><input style="text-align: center; color: #808080;width: 250px" [(ngModel)]="nomeFicheiro1"
+                                   disabled=""></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <label for="file"> <i class='bx bxs-cloud-upload icon'></i>
+                          </label>
+                          <input type="file" id="file111" name="myfile"
+                                 accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                                 hidden (change)="onSelectNewFile1($event)"><br><br>
+                        </td>
+                        <td>
+                          <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
+                            <img [src]="imageUrl6" alt="">
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Documento de Identificação</td>
+
+                        <td><input [(ngModel)]="nomeDocId" style="text-align: center;width: 250px;color: #808080;"
+                                   disabled=""></td>
+                        <td></td>
+                        <td style="height: 32px;padding-bottom: 0px;">
+                          <input id="validadeDocId" name="validadeDocId" style="width: 100px " type="text"
+                                 [matDatepicker]="picker" class="" [(ngModel)]="validadeDocId" readonly>
+                          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </td>
+                        <td>
+                          <label for="file1"><i class='bx bxs-cloud-upload icon'></i>
+                          </label>
+                          <input type="file" id="file1" name="myfile1"
+                                 accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                                 hidden><br><br>
+                        </td>
+
+                        <td>
+                          <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
+                            <img [src]="imageUrl1" alt="">
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Documento genérico</td>
+                        <td><input style="text-align: center; color: #808080;width: 250px" [(ngModel)]="nomeFicheiro2"
+                                   disabled=""></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <label for="file"> <i class='bx bxs-cloud-upload icon'></i>
+                          </label>
+                          <input type="file" id="file1111" name="myfile"
+                                 accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                                 hidden (change)="onSelectNewFile3($event)"><br><br>
+                        </td>
+                        <td>
+                          <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
+                            <img [src]="imageUrl2" alt="">
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Exame médico-desportivo</td>
+                        <td><input style="text-align: center; color: #808080;width: 250px" [(ngModel)]="nomeFicheiro3"
+                                   disabled=""></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <label for="file"> <i class='bx bxs-cloud-upload icon'></i>
+                          </label>
+                          <input type="file" id="file11111" name="myfile"
+                                 accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                                 hidden (change)="onSelectNewFile4($event)"><br><br>
+                        </td>
+                        <td>
+                          <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
+                            <img [src]="imageUrl3" alt="">
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Fotografia</td>
+                        <td><input style="text-align: center; color: #808080;width: 250px" [(ngModel)]="nomeFicheiro4"
+                                   disabled=""></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <label for="file"> <i class='bx bxs-cloud-upload icon'></i>
+                          </label>
+                          <input type="file" id="file111111" name="myfile"
+                                 accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                                 hidden (change)="onSelectNewFile2($event)"><br><br>
+                        </td>
+                        <td>
+                          <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
+                            <img [src]="imageUrl4" alt="">
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Modelo 2</td>
+                        <td><input style="text-align: center; color: #808080;width: 250px" [(ngModel)]="nomeBoletim"
+                                   disabled=""></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <label for="file"> <i class='bx bxs-cloud-upload icon'></i>
+                          </label>
+                          <input type="file" id="file" name="myfile"
+                                 accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                                 hidden><br><br>
+                        </td>
+                        <td>
+                          <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
+                            <img [src]="imageUrl" alt="">
+                          </div>
+                        </td>
+                      </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+
+                <div class="form-buttons-panel" id="wizardButtons">
+                  <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                          id="btnCancel" name="btnCancel" type="button" role="button"><span
+                    class="ui-button-text" [routerLink]="['/home']">Cancelar</span>
+                  </button>
+                  <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                          id="btnBack" name="btnBack" type="button" role="button"
+                          [routerLink]="['/inscricaoProvisoriaClubeJogador1']" skipLocationChange><span
+                    class="ui-button-text">Anterior</span></button>
+                  <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                          id="btnNext" name="btnNext" type="submit"><span
+                    class="ui-button-text" [routerLink]="['/inscricaoProvisoriaClubeJogador3']"
+                    skipLocationChange>Próximo</span>
+                  </button>
+                  <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                          id="btnKeepPlayer" name="btnKeepPlayer" type="button" role="button"
+                          style="display: none;"><span
+                    class="ui-button-text">Manter jogador</span></button>
+                  <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                          id="btnSubmitForm" name="btnSubmitForm" type="button" role="button"
+                          style="display: none;"><span
+                    class="ui-button-text">Inserir</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
