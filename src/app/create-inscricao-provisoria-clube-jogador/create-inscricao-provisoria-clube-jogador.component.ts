@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {InscricaoProvisoriaClubeJogador} from "../domain/inscricaoProvisoriaClubeJogador";
 import {
   InscricaoProvisoriaClubeJogadorService
@@ -15,6 +15,12 @@ import {PaisNascencaService} from "../services/paisNascenca/paisNascenca-service
 import {SharedServiceComponent} from "../shared-service/shared-service.component";
 import {ClubeService} from "../services/clube/clube-service";
 import {NgxSpinnerService} from "ngx-spinner";
+import {MatDialog} from "@angular/material/dialog";
+import {PopUpComponent} from "../pop-up/pop-up.component";
+import {AuthService} from "../services/auth/authService";
+import {Router} from "@angular/router";
+import {BehaviorSubject, catchError, Subject, takeUntil, throwError} from "rxjs";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-create-inscricao-provisoria-clube-jogador',
@@ -27,8 +33,8 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   jogador: Jogador;
   fileSelect?: Blob;
   fileSelect1?: Blob;
-  imageUrl?: string;
-  imageUrl1?: string;
+  imageUrl?: string = "favicon.ico";
+  imageUrl1?: string = "favicon.ico";
   nomeFicheiro: string;
   nomeFicheiro1: string;
 
@@ -42,11 +48,11 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
 
   nome: string;
   tipoDoc: string;
-  validadeDocId: string=" ";
+  validadeDocId: string ="";
   nif: string;
   sexo: string;
   estatutoFpF: string;
-  dataNascimento: string="";
+  dataNascimento: string = "";
   concelhoResidencia: string;
   telefone: string;
   email: string;
@@ -58,9 +64,7 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   modalidade: string;
   divisao: string;
   categoria: string;
-
-
-
+  flags: boolean[]=[false, false, false, false, false, false, false, false, false, false, false, false,false];
   dataAgora: Date;
   nacionalidade: string;
   paisNascenca: string;
@@ -69,6 +73,7 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   userData: any;
   email1: string;
   nomee: string;
+  erroo:string;
 
   roles: string[] = [
     "Colaborador de Associação",
@@ -76,9 +81,10 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   ];
 
   constructor(public inscricaoClubeJogadorService: InscricaoProvisoriaClubeJogadorService, private spinner: NgxSpinnerService, private utilizadorSerice: UtilizadorService,
-              private domSani: DomSanitizer, private pessoaService: PessoaService, private readonly changeDetectorRef: ChangeDetectorRef,
-              private nacionalidadeService: NacionalidadeService, private paisNascencaService: PaisNascencaService, private sharedService: SharedServiceComponent, private clubeService: ClubeService) {
+              private domSani: DomSanitizer, private pessoaService: PessoaService, private readonly changeDetectorRef: ChangeDetectorRef,private viewportScroller: ViewportScroller,
+              private nacionalidadeService: NacionalidadeService, private router: Router, private authService: AuthService, private dialogRef: MatDialog, private cdref: ChangeDetectorRef, private paisNascencaService: PaisNascencaService, private sharedService: SharedServiceComponent, private clubeService: ClubeService) {
   }
+
 
   ngOnInit(): void {
 
@@ -124,8 +130,9 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
     this.nacionalidade = this.sharedService.nacionalidade;
     this.paisNascenca = this.sharedService.paisNascenca;
 
-    this.validadeDocId=" ";
-    this.dataNascimento=" ";
+    this.validadeDocId = " ";
+    this.dataNascimento = " ";
+
   }
 
   public onSelectNewFile($event: Event): void {
@@ -137,6 +144,11 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
       this.nomeFicheiro = inputElement.files[0].name;
       this.imageUrl = this.domSani.bypassSecurityTrustUrl(window.URL.createObjectURL(this.fileSelect)) as string;
       this.base64 = "Base64...";
+      let reader = new FileReader();
+      reader.readAsDataURL(this.fileSelect as Blob);
+      reader.onloadend = () => {
+        this.base64 = reader.result as string;
+      }
     }
 
   }
@@ -149,38 +161,36 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
       this.fileSelect1 = inputElement.files[0];
       this.nomeFicheiro1 = inputElement.files[0].name;
       this.imageUrl1 = this.domSani.bypassSecurityTrustUrl(window.URL.createObjectURL(this.fileSelect1)) as string;
-      this.base641 = "Base64...";
+      let reader = new FileReader();
+      reader.readAsDataURL(this.fileSelect1 as Blob);
+      reader.onloadend = () => {
+        this.base641 = reader.result as string;
+      }
     }
-
   }
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
   matcher = new ErrorStateMatcher();
 
-  convertFileToBase64(): void {
-    let reader = new FileReader();
-    reader.readAsDataURL(this.fileSelect as Blob);
-    reader.onloadend = () => {
-      this.base64 = reader.result as string;
-    }
+  async open() {
+    this.dialogRef.open(PopUpComponent);
+  }
+  private unsubscribe$ = new Subject<void>();
+
+  async close() {
+    this.dialogRef.closeAll();
   }
 
-  convertFileToBase641(): void {
-    let reader = new FileReader();
-    reader.readAsDataURL(this.fileSelect1 as Blob);
-    reader.onloadend = () => {
-      this.base641 = reader.result as string;
-    }
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
-
   public createInscricaoClubeJogador(): void {
 
-    this.spinner.show();
-    // setTimeout(() => {
-    // Recebeu a resposta, oculta o spinner
-
+    this.open();
     this.inscricaoClubeJogadorService.createInscricaoProvisoriaClubeJogador(this.base64, this.base641).subscribe(data => {
+
       this.inscricao = data;
       this.nome = this.inscricao.nome;
       this.tipoDoc = this.inscricao.tipoDoc;
@@ -202,16 +212,32 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
       this.divisao = this.inscricao.divisao;
       this.categoria = this.inscricao.categoria;
       this.dataAgora = data;
-    });
-    // this.spinner.hide();
-    // }, 20000000);
+      this.close();
+    },error => {
+      console.log(error.error);
+      this.flags[12]=true;
+      this.erroo=error.error;
+      this.close();
+    })
 
-    //setTimeout(window.location.reload.bind(window.location), 200)
+  }
+
+  proximo() {
+    if ( this.createInscricaoClubeJogador2()) {
+      this.redirect('/inscricaoProvisoriaClubeJogador1');
+      return true;
+    } else
+      return null;
   }
 
 
-  public createInscricaoClubeJogador2(): void | null {
-    if (this.inscricaoClubeJogadorService.validateData(this.nome, this.nrIdentificacao, this.nif, this.sexo, this.paisNascenca, this.nacionalidade, this.telefone, this.email)) {
+  redirect(url: string): void {
+    this.router.navigate([url]).then();
+  }
+
+  public createInscricaoClubeJogador2(): boolean {
+    this.flags=this.inscricaoClubeJogadorService.validateData(this.nome,this.tipoDoc, this.nrIdentificacao,this.validadeDocId,this.dataNascimento, this.nif, this.sexo, this.paisNascenca, this.nacionalidade, this.telefone, this.email);
+    if (this.inscricaoClubeJogadorService.validateData1(this.nome, this.nrIdentificacao, this.nif, this.sexo, this.paisNascenca, this.nacionalidade, this.telefone, this.email)) {
       this.sharedService.nome = this.nome;
       this.sharedService.tipoDoc = this.tipoDoc;
       this.sharedService.nrIdentificacao = this.nrIdentificacao;
@@ -236,11 +262,19 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
       this.sharedService.nomeDocId = this.nomeFicheiro1;
       this.sharedService.imageUrl = this.imageUrl;
       this.sharedService.imageUrl1 = this.imageUrl1;
-
-
-    } else return null;
+      this.viewportScroller.scrollToPosition([0, 0]);
+      return true;
+    } else
+      this.viewportScroller.scrollToPosition([0, 0]);
+      return false;
     //setTimeout(window.location.reload.bind(window.location), 200)
   }
+  checkTrue(num: number): boolean {
+    return (this.flags)[num];
+  }
 
+  checkTrue1(): boolean {
+    return !this.flags.every(item => !item);
+  }
 
 }

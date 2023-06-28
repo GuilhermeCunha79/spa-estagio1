@@ -43,8 +43,7 @@ import {SocialLoginModule} from "@abacritt/angularx-social-login";
 import {NgxSpinnerModule} from "ngx-spinner";
 import { ConsultarJogadorComponent } from './consultar-jogador/consultar-jogador.component';
 import { ProcessoInscricao1Component } from './processo-inscricao1/processo-inscricao1.component';
-
-
+import { PopUpComponent } from './pop-up/pop-up.component';
 
 
 
@@ -97,7 +96,8 @@ import { ProcessoInscricao1Component } from './processo-inscricao1/processo-insc
     CreateInscricaoProvisoriaClubeJogador2Component,
     CreateInscricaoProvisoriaClubeJogador3Component,
     ConsultarJogadorComponent,
-    ProcessoInscricao1Component
+    ProcessoInscricao1Component,
+    PopUpComponent
   ],
 
   providers: [PessoaService,{ provide: MAT_DATE_LOCALE, useValue: 'pt-pt' },SharedServiceComponent],

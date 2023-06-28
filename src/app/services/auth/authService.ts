@@ -174,7 +174,6 @@ export class AuthService {
       "password":password,
       "nomeAssociacao":nomeAssociacao
     };
-    console.log(body);
     return this.httpClient.put(this.URL, body).pipe(map(this.extractData));
   }
 

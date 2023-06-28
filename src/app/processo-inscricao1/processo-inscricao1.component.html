@@ -77,31 +77,31 @@
              [routerLink]="['/home']">Início</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Filiation"
-             onclick="return loadWindow('/InscricaoClubes/Club/Filiation');">Filiação</a>
+          <a class="menu-link " data-badge-url="">Equipas</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Team"
-             onclick="return loadWindow('/InscricaoClubes/Team');">Inscrição de equipas</a>
+          <a class="menu-link " data-badge-url="" [routerLink]="['/inscricaoProvisoriaClubeJogador']">Registar</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Create"
-             onclick="return loadWindow('/InscricaoClubes/Club/Create');">Criação</a>
-        </li>
-        <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Edit"
-             onclick="return loadWindow('/InscricaoClubes/Club/Edit');">Edição</a>
+          <a class="menu-link " data-badge-url="">Jogadores</a>
         </li>
         <li class="vertical-menu">
           <a [routerLink]="['/processoInscricao']">Processos</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/ClubContactDetail"
-             onclick="return loadWindow('/InscricaoClubes/Club/ClubContactDetail');">Contatos do clube</a>
+          <a class="menu-link " data-badge-url="">Listagens</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/VemJogar"
-             onclick="return loadWindow('/InscricaoClubes/VemJogar');">Vem Jogar</a>
+          <a class="menu-link " data-badge-url="" >Notificação documentos</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="">Carregamento fotografias</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="">Futebol Praia</a>
+        </li>
+        <li class="vertical-menu">
+          <a class="menu-link " data-badge-url="">Walking Football</a>
         </li>
       </ul>
       <div class="module-area ">
@@ -273,7 +273,7 @@
                 </div>
                 <div class="form-field-row ffr-four-columns">
                   <label>Associação:</label>
-                  {{associacao}}
+                  {{nomee}}
                 </div>
                 <div class="form-field-row ffr-four-columns">
                   <label>Data movimento:</label>
@@ -313,11 +313,11 @@
                 </div>
                 <div class="form-field-row ffr-four-columns">
                   <label>Data exame médico:</label>
-
+                  {{dataExameMedico}}
                 </div>
                 <div class="form-field-row ffr-four-columns">
                   <label>Data validade exame médico:</label>
-
+                  {{dataValidadeMedico}}
                 </div>
 
                 <div class="form-field-row ffr-four-columns">
@@ -398,7 +398,7 @@
           <div class="form-buttons-panel" id="wizardButtons">
             <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                     id="btnNext1" name="btnNext" type="submit" [routerLink]="['/processoInscricao']"
-                    ><span
+            ><span
               class="ui-button-text">Anterior</span></button>
 
             <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
@@ -408,7 +408,7 @@
 
             <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                     (click)="aprovarProcesso()" id="btnNext2" name="btnNext" type="submit"><span
-              class="ui-button-text" >Aprovar</span></button>
+              class="ui-button-text">Aprovar</span></button>
           </div>
         </div>
       </div>

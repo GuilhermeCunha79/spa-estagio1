@@ -30,9 +30,11 @@ export class SharedServiceComponent {
   dataSubs: Date;
   dataExame:string;
   validadeExame:string;
+  nrOrdem:string;
 
   nomeBoletim: string;
   nomeDocId: string;
+  aptidao:string;
 
   imageUrl?: string;
   imageUrl1?: string;

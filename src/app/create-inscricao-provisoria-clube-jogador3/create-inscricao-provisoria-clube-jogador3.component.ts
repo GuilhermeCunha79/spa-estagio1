@@ -40,6 +40,7 @@ export class CreateInscricaoProvisoriaClubeJogador3Component implements OnInit {
   dataExame:string;
   validadeExame:string;
 
+  nrOrdem:string;
   nomeBoletim: string;
   nomeDocId: string;
 
@@ -82,6 +83,7 @@ export class CreateInscricaoProvisoriaClubeJogador3Component implements OnInit {
     this.nomeDocId = this.sharedService.nomeDocId;
     this.dataExame=this.sharedService.dataExame;
     this.validadeExame=this.sharedService.validadeExame;
+    this.nrOrdem=this.sharedService.nrOrdem;
 
     if (sessionStorage.getItem("user-data")) {
       this.userData = JSON.parse(sessionStorage.getItem("user-data")!);
@@ -101,8 +103,11 @@ export class CreateInscricaoProvisoriaClubeJogador3Component implements OnInit {
   }
 
   public createInscricaoClubeJogador1(): void {
-    this.inscricaoClubeJogadorService.createInscricaoProvisoriaClubeJogador1(this.nome, this.tipoDoc, this.nrIdentificacao, this.checkDigit, this.validadeDoc, this.estatutoFpF, this.nif, this.sexo, this.dataNascimento, this.paisNascenca, this.nacionalidade, this.concelhoResidencia, this.telefone, this.email).subscribe(data => {
-      this.inscricao = data
+    this.inscricaoClubeJogadorService.createInscricaoProvisoriaClubeJogador1(this.nome, this.tipoDoc, this.nrIdentificacao,
+      this.checkDigit, this.validadeDoc, this.estatutoFpF, this.nif, this.sexo, this.dataNascimento, this.paisNascenca,
+      this.nacionalidade, this.concelhoResidencia, this.telefone, this.email,
+     this.codClube,this.nomeAssociacao,this.nomeClube,this.modalidade,this.divisao,this.categoria ).subscribe(data => {
+        this.inscricao = data
     });
     setTimeout(window.location.reload.bind(window.location), 200)
   }

@@ -12,9 +12,9 @@
         <span class="user-box-username">Ligado como:</span>
         <span class="user-box-profile" title="Guilherme Cunha, A.F. ANGRA HEROÍSMO">{{roles[userData.role - 1]}}
           , {{nomee}} </span>
-        <div class="user-box-profile-selector visible" >
+        <div class="user-box-profile-selector visible">
         <span class="user-box-profile-image" title="Alterar perfil">
-            <img src="favicon.ico" title="Guilherme Cunha" class="image-preview-small" onerror="$(this).hide();" >
+            <img src="favicon.ico" title="Guilherme Cunha" class="image-preview-small" onerror="$(this).hide();">
         </span>
 
           <div class="user-box-profile-container " style="display: none;">
@@ -73,35 +73,31 @@
     <div class="navigation-container">
       <ul class="ui-cst-navigation first-level">
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club"
-             onclick="return loadWindow('/InscricaoClubes/Club');">Início</a>
+          <a class="menu-link " data-badge-url=""
+             [routerLink]="['/home']">Início</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Filiation"
-             onclick="return loadWindow('/InscricaoClubes/Club/Filiation');">Filiação</a>
+          <a class="menu-link " data-badge-url="">Equipas</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Team"
-             onclick="return loadWindow('/InscricaoClubes/Team');">Inscrição de equipas</a>
+          <a class="menu-link " data-badge-url=""
+             [routerLink]="['/inscricaoProvisoriaClubeJogador']">Registar</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Create"
-             onclick="return loadWindow('/InscricaoClubes/Club/Create');">Criação</a>
+          <a class="menu-link " data-badge-url=""
+             [routerLink]="['/consultarJogador']">Jogadores</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Edit"
-             onclick="return loadWindow('/InscricaoClubes/Club/Edit');">Edição</a>
+          <a class="menu-link " data-badge-url=""[routerLink]="['/processoInscricao']">Processos</a>
         </li>
         <li class="vertical-menu">
-          <a [routerLink]="['/processoInscricao']">Processos</a>
+          <a class="menu-link " data-badge-url="">Modelo2</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/ClubContactDetail"
-             onclick="return loadWindow('/InscricaoClubes/Club/ClubContactDetail');">Contatos do clube</a>
+          <a class="menu-link " data-badge-url="">Futebol Praia</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/VemJogar"
-             onclick="return loadWindow('/InscricaoClubes/VemJogar');">Vem Jogar</a>
+          <a class="menu-link " data-badge-url="">FCH</a>
         </li>
       </ul>
       <div class="module-area ">
@@ -200,48 +196,31 @@
           <div id="PlayerCurrentInfo" class="content scoreTable">
             <div class="grid-search-panel">
               <div class="grid-search-fields-wrapper">
-                    <span class="form-field-row ">
-                        <label for="SearchTypeId">Critério pesquisa:</label>
-                        <span class="form-field-wrapper quarter-width">
+                <label for="SearchTypeId" style="margin-left: 60px">Critério pesquisa:</label>
+                <span class="form-field-wrapper quarter-width"></span>
+                <div class="form-field-row  mandatory-field" style="margin-left: 18px;">
+                  <select required style="width: 200px; font-size: 10px;height: 28px">
+                    <option style="font-size: 10px;">Selecione...</option>
+                    <option style="font-size: 10px;">Licenca</option>
+                    <option style="font-size: 10px;">Nome</option>
+                  </select>
+                </div>
 
-                    <div class="select2-container ui-cst-dropdown field-container" id="s2id_SearchTypeId"><a
-                      class="select2-choice"
-                      tabindex="-1">   <span
-                      class="select2-chosen" id="select2-chosen-2">Nome</span><abbr
-                      class="select2-search-choice-close"></abbr>   <span
-                      class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label
-                      for="s2id_autogen2"
-                      class="select2-offscreen">Critério pesquisa:</label><input
-                      class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button"
-                      aria-labelledby="select2-chosen-2" id="s2id_autogen2"><select class="ui-cst-dropdown"
-                                                                                    data-ajaxurl=""
-                                                                                    data-disableifempty="true"
-                                                                                    data-optionallabel=""
-                                                                                    data-parentcontrol=""
-                                                                                    data-showoptionallabel="false"
-                                                                                    id="SearchTypeId"
-                                                                                    name="SearchTypeId" tabindex="-1"
-                                                                                    title="Critério pesquisa:"
-                                                                                    style="display: none;"><option
-                      value="1">Licença</option><option value="2">Nome</option><option selected="selected" value="3">Identificação</option><option
-                      value="4">FIFA ID</option></select></div>
 
-                                            </span>
-                                        </span>
 
 
                 <br>
-                <span class="form-field-row search-player-name">
-                                            <label>Pesquisa</label>
-                  </span>
-                <div class="form-field-row quarter-width  mandatory-field" style="margin-bottom: 3px">
-                <div class="field-container ui-cst-textbox">
+                <label style="margin-left: 94px">Pesquisa:</label>
+                <span class="form-field-wrapper quarter-width"></span>
+                <div class="form-field-row  mandatory-field" style="margin-left: 18px;">
+                  <input class="ui-cst-textbox-input" id="nrIdentificacao" style="width: 200px" name="nrIdentificacao"
+                         type="text" [(ngModel)]="inputLicenca" style="width: 200px; font-size: 10px;height: 28px">
 
-                    <input class="ui-cst-textbox-input" [(ngModel)]="inputLicenca">
+                  <button (click)="getByLicenca()" style="margin-left: 18px; font-size: 10px;height: 28px;line-height: 23px">Submeter</button>
                 </div>
-                </div>
-                <button (click)="getByLicenca()"></button>
-              </div>
+
+
+            </div>
             </div>
           </div>
         </div>

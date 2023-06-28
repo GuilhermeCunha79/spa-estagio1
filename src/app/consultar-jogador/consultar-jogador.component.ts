@@ -14,7 +14,7 @@ export class ConsultarJogadorComponent implements OnInit {
 
   consulta: JogadorVisualizacao;
 
-  inputLicenca: number;
+  inputLicenca: string;
 
   userData: any;
   email1: string;
@@ -60,8 +60,7 @@ export class ConsultarJogadorComponent implements OnInit {
   }
 
   public getByLicenca(): void {
-    this.inputLicenca = 1;
-    this.consultar.getJogadoresByLicenca(this.inputLicenca.toString()).subscribe(data => {
+    this.consultar.getJogadoresByLicenca(this.inputLicenca).subscribe(data => {
       this.consulta = data;
       this.nome = this.consulta.nome;
       this.sexo = this.consulta.sexo;

@@ -125,7 +125,6 @@ export class ProcessoInscricao1Component implements OnInit {
         })
       }
     );
-
     this.tipoDoc = "Número de identificação civil";
     this.licenca = this.shared.licenca1;
     this.nrProcesso = this.shared.nrProcesso1;

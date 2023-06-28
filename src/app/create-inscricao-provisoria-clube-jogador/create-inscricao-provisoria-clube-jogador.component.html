@@ -77,31 +77,25 @@
              [routerLink]="['/home']">Início</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Filiation"
-             onclick="return loadWindow('/InscricaoClubes/Club/Filiation');">Filiação</a>
+          <a class="menu-link " data-badge-url="">Equipas</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Team"
-             onclick="return loadWindow('/InscricaoClubes/Team');">Inscrição de equipas</a>
+          <a class="menu-link " data-badge-url="" [routerLink]="['/inscricaoProvisoriaClubeJogador']">Registar</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Create"
-             onclick="return loadWindow('/InscricaoClubes/Club/Create');">Criação</a>
+          <a class="menu-link " data-badge-url="" [routerLink]="['/consultarJogador']">Jogadores</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/Edit"
-             onclick="return loadWindow('/InscricaoClubes/Club/Edit');">Edição</a>
+          <a class="menu-link " data-badge-url="" [routerLink]="['/processoInscricao']">Processos</a>
         </li>
         <li class="vertical-menu">
-          <a [routerLink]="['/processoInscricao']">Processos</a>
+          <a class="menu-link " data-badge-url="">Modelo2</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/Club/ClubContactDetail"
-             onclick="return loadWindow('/InscricaoClubes/Club/ClubContactDetail');">Contatos do clube</a>
+          <a class="menu-link " data-badge-url="">Futebol Praia</a>
         </li>
         <li class="vertical-menu">
-          <a class="menu-link " data-badge-url="" href="/InscricaoClubes/VemJogar"
-             onclick="return loadWindow('/InscricaoClubes/VemJogar');">Vem Jogar</a>
+          <a class="menu-link " data-badge-url="">FCH</a>
         </li>
       </ul>
       <div class="module-area ">
@@ -135,6 +129,35 @@
   <div class="body">
 
     <section>
+
+      <div *ngIf="checkTrue1()" id="errorSummaryPanel" class="error-summary expanded" style="">
+        <a name="anchorErrorSummaryPanel"></a>
+        <div class="error-summary-header">
+          <h2 style="padding-top: 8px "><span class="error_summary-header-title"></span></h2>
+          <span class="error-summary-header-actions">
+
+                    </span>
+        </div>
+        <div  class="error-summary-panel-container" style="padding-top: 2px; padding-bottom: 9px;">
+          <div id="errorSummaryList" class="error-summary-panel">
+            <ul style="margin-top: 4px">
+              <li *ngIf="checkTrue(0)" class="panelError hasField">É obrigatório indicar o nome.</li>
+              <li *ngIf="checkTrue(1)" class="panelError hasField">É obrigatório indicar o tipo de documento de identificação.</li>
+              <li *ngIf="checkTrue(2)" class="panelError hasField">É obrigatório indicar o número do documento de identificação.</li>
+              <li *ngIf="checkTrue(3)" class="panelError hasField">É obrigatório indicar a validade do documento de identificação.</li>
+              <li *ngIf="checkTrue(4)" class="panelError hasField">É obrigatório indicar o número de identificação fiscal.</li>
+              <li *ngIf="checkTrue(5)" class="panelError hasField">É obrigatório indicar o sexo.</li>
+              <li *ngIf="checkTrue(6)" class="panelError hasField">É obrigatório indicar o data de nascimento.</li>
+              <li *ngIf="checkTrue(7)" class="panelError hasField">É obrigatório indicar a país de origem.</li>
+              <li *ngIf="checkTrue(8)" class="panelError hasField">É obrigatório indicar o nacionalidade.</li>
+              <li *ngIf="checkTrue(10)" class="panelError hasField">É obrigatório indicar o telefone.</li>
+              <li *ngIf="checkTrue(11)" class="panelError hasField">É obrigatório indicar o email.</li>
+              <li *ngIf="checkTrue(12)" class="panelError hasField">{{erroo}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div class="content-container">
         <header style="margin-top: 14px;">
           <h2 style="margin-top: 12px;">Nova 1ª inscrição de amadores</h2>
@@ -181,6 +204,7 @@
 
             </li>
           </ul>
+
 
           <div id="wizardBody" class="scoreForm">
             <div class="form-field-zone">
@@ -237,7 +261,7 @@
 
                     <td>
                       <div class="img-area" style="margin-bottom: 0; margin-left: 45px">
-                        <img [src]="imageUrl" class="" [alt]="">
+                        <img [src]="imageUrl" class="" alt="">
                       </div>
                     </td>
 
@@ -268,9 +292,11 @@
                 </table>
               </div>
               <div class="form-buttons-panel" id="wizardButtons1">
-              <button class="button" type="submit"
-                      (click)="createInscricaoClubeJogador();convertFileToBase641();convertFileToBase64()">Submeter
-              </button>
+                <button class="button" type="submit"
+                        (click)="createInscricaoClubeJogador();">Submeter
+                </button>
+
+
               </div>
 
 
@@ -284,20 +310,18 @@
               </div>
 
 
-
               <!--<ngx-spinner [bdColor]="'rgba(51,51,51,0.8)'" [size]="'medium'" [color]="'#fff'" [type]="'ball-atom'"></ngx-spinner>-->
-
 
 
               <div class="form-field-row  mandatory-field">
                 <label>Tipo de doc. de identificação:</label>
-                <select required style="width: 200px; font-size: 10px;"  [(ngModel)]="tipoDoc">
+                <select required style="width: 200px; font-size: 10px;" [(ngModel)]="tipoDoc">
                   <option style="font-size: 10px;">Selecione...</option>
                   <option style="font-size: 10px;">Número de identificação civil</option>
-                  <option style="font-size: 10px;" >Passaporte</option>
-                  <option style="font-size: 10px;" >Carta de residência</option>
-                  <option style="font-size: 10px;" >Autorização de residência</option>
-                  <option style="font-size: 10px;" >B.i. estrangeiro</option>
+                  <option style="font-size: 10px;">Passaporte</option>
+                  <option style="font-size: 10px;">Carta de residência</option>
+                  <option style="font-size: 10px;">Autorização de residência</option>
+                  <option style="font-size: 10px;">B.i. estrangeiro</option>
                   <option style="font-size: 10px;">Título de residência</option>
                 </select>
               </div>
@@ -319,7 +343,7 @@
                 <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="validadeDoc1"
                      name="validadeDocId.container" style="height: 23px;">
                   <input id="validadeDocId" name="validadeDocId" style="width: 200px " type="text"
-                         [matDatepicker]="picker" class="" [placeholder]="validadeDocId">
+                         [matDatepicker]="picker" class="" [placeholder]="validadeDocId" [(ngModel)]="validadeDocId">
                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </div>
@@ -345,8 +369,8 @@
 
               <div class="form-field-row quarter-width  mandatory-field" style="margin-bottom: 3px">
                 <label>Data de nascimento:</label>
-                <input  id="dataNascimento" name="dataNascimento" style="width: 200px"
-                       type="text" [matDatepicker]="picker1"  [placeholder]="dataNascimento">
+                <input id="dataNascimento" name="dataNascimento" style="width: 200px"
+                       type="text" [matDatepicker]="picker1" [placeholder]="dataNascimento" [(ngModel)]="dataNascimento">
 
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
@@ -481,8 +505,8 @@
                         id="btnBack" name="btnBack" type="button" role="button" style="display: none;"><span
                   class="ui-button-text">Anterior</span></button>
                 <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                        id="btnNext" name="btnNext" type="submit" [routerLink]="['/inscricaoProvisoriaClubeJogador1']"
-                        skipLocationChange (click)="createInscricaoClubeJogador2()"><span
+                        id="btnNext" name="btnNext" type="submit"
+                        skipLocationChange (click)="proximo()"><span
                   class="ui-button-text">Próximo</span></button>
                 <button class="ui-cst-button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                         id="btnKeepPlayer" name="btnKeepPlayer" type="button" role="button" style="display: none;"><span

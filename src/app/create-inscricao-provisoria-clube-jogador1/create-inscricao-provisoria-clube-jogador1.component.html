@@ -204,14 +204,14 @@
                 </div>
               </div>
 
-              <div class="form-field-row quarter-width mandatory-field">
+              <div class="form-field-row quarter-width">
                 <label>Nº ordem:</label>
 
                 <div class="field-container ui-cst-textbox" data-password="0" data-widget="false"
                      id="nrIdentificacao111"
                      name="nrIdentificacao.container">
                   <input class="ui-cst-textbox-input" id="nrIdentificacao" style="width: 200px" name="nrIdentificacao"
-                         type="text">
+                         type="text" [(ngModel)]="nrOrdem">
                 </div>
               </div>
 
@@ -246,12 +246,18 @@
                 <mat-datepicker #picker2></mat-datepicker>
               </div>
 
-              <div class="form-field-row quarter-width  mandatory-field">
+              <div class="form-field-row quarter-width">
                 <label>Aptidão superior:</label>
-                <select required style="width: 200px; font-size: 10px;">
+                <select required style="width: 200px; font-size: 10px;" [(ngModel)]="aptidao">
                   <option>Selecione...</option>
-                  <option value="Masculino" style="font-size: 10px;">Masculino</option>
-                  <option value="Feminino" style="font-size: 10px;">Feminino</option>
+                  <option value="Veterano" style="font-size: 10px;">Veterano</option>
+                  <option value="Sénior" style="font-size: 10px;">Sénior</option>
+                  <option value="JúniorA" style="font-size: 10px;">JúniorA</option>
+                  <option value="JúniorB" style="font-size: 10px;">JúniorB</option>
+                  <option value="JúniorC" style="font-size: 10px;">JúniorC</option>
+                  <option value="JúniorD" style="font-size: 10px;">JúniorD</option>
+                  <option value="Benjamim" style="font-size: 10px;">Benjamim</option>
+                  <option value="Traquina" style="font-size: 10px;">Traquina</option>
                 </select>
               </div>
 

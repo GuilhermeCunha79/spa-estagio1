@@ -16,6 +16,8 @@ export class CreateInscricaoProvisoriaClubeJogador1Component implements OnInit {
 
   nome: string;
   tipoDoc: string;
+  aptidao: string;
+  nrOrdem:string;
   validadeDocId: string;
   nif: string;
   sexo: string;
@@ -80,6 +82,9 @@ export class CreateInscricaoProvisoriaClubeJogador1Component implements OnInit {
     this.data = Date();
     this.nomeBoletim = this.sharedService.nomeBoletim;
     this.nomeDocId = this.sharedService.nomeDocId;
+    this.aptidao=this.sharedService.aptidao;
+    this.dataExame=this.sharedService.dataExame;
+    this.validadeExame=this.sharedService.validadeExame;
 
     if (sessionStorage.getItem("user-data")) {
       this.userData = JSON.parse(sessionStorage.getItem("user-data")!);
@@ -98,6 +103,7 @@ export class CreateInscricaoProvisoriaClubeJogador1Component implements OnInit {
     }
     this.sharedService.dataExame = this.dataExame;
     this.sharedService.validadeExame = this.validadeExame;
+    this.sharedService.nrOrdem=this.nrOrdem;
     this.getClubes();
 
   }
