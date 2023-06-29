@@ -175,7 +175,7 @@ export class InscricaoProvisoriaClubeJogadorService {
       this.log("ERRO: O 'Nº. doc de identificação' deve ser preenchido.");
     }
 
-    if (nrDoc?.length > 8) {
+    if (nrDoc?.length != 8) {
       this.log("ERRO: O 'Nº. doc de identificação' deve apenas conter 8 carateres numéricos.");
       flag = false;
     }

@@ -7,6 +7,9 @@ import {Component} from '@angular/core';
 })
 export class SharedServiceComponent {
 
+  imagemCaptura64:string;
+  imagemCapturaUrl?:string;
+
   nome: string;
   tipoDoc: string;
   validadeDocId: string;

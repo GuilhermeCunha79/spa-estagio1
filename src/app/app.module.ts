@@ -44,38 +44,41 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import { ConsultarJogadorComponent } from './consultar-jogador/consultar-jogador.component';
 import { ProcessoInscricao1Component } from './processo-inscricao1/processo-inscricao1.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import {WebcamModule} from "ngx-webcam";
+import { TakePhotoComponent } from './take-photo/take-photo.component';
 
 
 
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    NgOptimizedImage,
-    MatDialogModule,
-    MatToolbarModule,
-    MaterialModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatGridListModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatRadioModule,
-    NgxPaginationModule,
-    SocialLoginModule,
-    NgxSpinnerModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        NgOptimizedImage,
+        MatDialogModule,
+        MatToolbarModule,
+        MaterialModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatToolbarModule,
+        MatGridListModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatRadioModule,
+        NgxPaginationModule,
+        SocialLoginModule,
+        NgxSpinnerModule,
+        WebcamModule
+    ],
   declarations: [
     AppComponent,
     DefaultLayoutComponent,
@@ -97,7 +100,8 @@ import { PopUpComponent } from './pop-up/pop-up.component';
     CreateInscricaoProvisoriaClubeJogador3Component,
     ConsultarJogadorComponent,
     ProcessoInscricao1Component,
-    PopUpComponent
+    PopUpComponent,
+    TakePhotoComponent
   ],
 
   providers: [PessoaService,{ provide: MAT_DATE_LOCALE, useValue: 'pt-pt' },SharedServiceComponent],

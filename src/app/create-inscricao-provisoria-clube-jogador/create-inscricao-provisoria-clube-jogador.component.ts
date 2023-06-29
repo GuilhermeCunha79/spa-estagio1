@@ -19,8 +19,9 @@ import {MatDialog} from "@angular/material/dialog";
 import {PopUpComponent} from "../pop-up/pop-up.component";
 import {AuthService} from "../services/auth/authService";
 import {Router} from "@angular/router";
-import {BehaviorSubject, catchError, Subject, takeUntil, throwError} from "rxjs";
 import {ViewportScroller} from "@angular/common";
+import {WebcamComponent, WebcamImage} from "ngx-webcam";
+import {TakePhotoComponent} from "../take-photo/take-photo.component";
 
 @Component({
   selector: 'app-create-inscricao-provisoria-clube-jogador',
@@ -48,7 +49,7 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
 
   nome: string;
   tipoDoc: string;
-  validadeDocId: string ="";
+  validadeDocId: string = "";
   nif: string;
   sexo: string;
   estatutoFpF: string;
@@ -64,7 +65,7 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   modalidade: string;
   divisao: string;
   categoria: string;
-  flags: boolean[]=[false, false, false, false, false, false, false, false, false, false, false, false,false];
+  flags: boolean[] = [false, false, false, false, false, false, false, false, false, false, false, false, false];
   dataAgora: Date;
   nacionalidade: string;
   paisNascenca: string;
@@ -73,7 +74,7 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   userData: any;
   email1: string;
   nomee: string;
-  erroo:string;
+  erroo: string;
 
   roles: string[] = [
     "Colaborador de Associação",
@@ -81,12 +82,13 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   ];
 
   constructor(public inscricaoClubeJogadorService: InscricaoProvisoriaClubeJogadorService, private spinner: NgxSpinnerService, private utilizadorSerice: UtilizadorService,
-              private domSani: DomSanitizer, private pessoaService: PessoaService, private readonly changeDetectorRef: ChangeDetectorRef,private viewportScroller: ViewportScroller,
+              private domSani: DomSanitizer, private pessoaService: PessoaService, private readonly changeDetectorRef: ChangeDetectorRef, private viewportScroller: ViewportScroller,
               private nacionalidadeService: NacionalidadeService, private router: Router, private authService: AuthService, private dialogRef: MatDialog, private cdref: ChangeDetectorRef, private paisNascencaService: PaisNascencaService, private sharedService: SharedServiceComponent, private clubeService: ClubeService) {
   }
 
 
   ngOnInit(): void {
+
 
     this.utilizadorSerice.checkPermission(this.permissions);
     this.nacionalidadeService.getNacionalidades().subscribe((data: string[]) => this.paisesNacionalidade = data.map((item: any) => item.nacionalidadePais));
@@ -135,6 +137,7 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
 
   }
 
+
   public onSelectNewFile($event: Event): void {
 
     const inputElement = $event.target as HTMLInputElement;
@@ -176,16 +179,31 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   async open() {
     this.dialogRef.open(PopUpComponent);
   }
-  private unsubscribe$ = new Subject<void>();
+
+
+  openDialog() {
+    const dialogRef = this.dialogRef.open(TakePhotoComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.base64=this.sharedService.imagemCaptura64;
+      this.imageUrl= this.domSani.bypassSecurityTrustResourceUrl(result) as string;
+    });
+  }
+
+  openDialog1() {
+    const dialogRef = this.dialogRef.open(TakePhotoComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.base641=this.sharedService.imagemCaptura64;
+      this.imageUrl1= this.domSani.bypassSecurityTrustResourceUrl(result) as string;
+    });
+  }
+
 
   async close() {
     this.dialogRef.closeAll();
   }
 
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
+
   public createInscricaoClubeJogador(): void {
 
     this.open();
@@ -213,17 +231,17 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
       this.categoria = this.inscricao.categoria;
       this.dataAgora = data;
       this.close();
-    },error => {
+    }, error => {
       console.log(error.error);
-      this.flags[12]=true;
-      this.erroo=error.error;
+      this.flags[12] = true;
+      this.erroo = error.error;
       this.close();
     })
 
   }
 
   proximo() {
-    if ( this.createInscricaoClubeJogador2()) {
+    if (this.createInscricaoClubeJogador2()) {
       this.redirect('/inscricaoProvisoriaClubeJogador1');
       return true;
     } else
@@ -232,11 +250,12 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
 
 
   redirect(url: string): void {
-    this.router.navigate([url]).then();
+    this.router.navigate([url], {skipLocationChange: true}).then();
   }
 
   public createInscricaoClubeJogador2(): boolean {
-    this.flags=this.inscricaoClubeJogadorService.validateData(this.nome,this.tipoDoc, this.nrIdentificacao,this.validadeDocId,this.dataNascimento, this.nif, this.sexo, this.paisNascenca, this.nacionalidade, this.telefone, this.email);
+
+    this.flags = this.inscricaoClubeJogadorService.validateData(this.nome, this.tipoDoc, this.nrIdentificacao, this.validadeDocId, this.dataNascimento, this.nif, this.sexo, this.paisNascenca, this.nacionalidade, this.telefone, this.email);
     if (this.inscricaoClubeJogadorService.validateData1(this.nome, this.nrIdentificacao, this.nif, this.sexo, this.paisNascenca, this.nacionalidade, this.telefone, this.email)) {
       this.sharedService.nome = this.nome;
       this.sharedService.tipoDoc = this.tipoDoc;
@@ -266,15 +285,16 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
       return true;
     } else
       this.viewportScroller.scrollToPosition([0, 0]);
-      return false;
+    return false;
     //setTimeout(window.location.reload.bind(window.location), 200)
   }
+
   checkTrue(num: number): boolean {
+    console.log(this.flags);
     return (this.flags)[num];
   }
 
   checkTrue1(): boolean {
     return !this.flags.every(item => !item);
   }
-
 }

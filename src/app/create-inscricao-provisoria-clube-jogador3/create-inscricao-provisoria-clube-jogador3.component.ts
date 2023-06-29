@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Clube} from "../domain/clube";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SharedServiceComponent} from "../shared-service/shared-service.component";
 import {ClubeService} from "../services/clube/clube-service";
 import {
@@ -53,7 +53,8 @@ export class CreateInscricaoProvisoriaClubeJogador3Component implements OnInit {
     "Colaborador de Clube"
   ];
 
-  constructor(private route: ActivatedRoute,private inscricaoClubeJogadorService:InscricaoProvisoriaClubeJogadorService, private sharedService: SharedServiceComponent, private clubeService: ClubeService) {
+  constructor(private route: ActivatedRoute,private inscricaoClubeJogadorService:InscricaoProvisoriaClubeJogadorService,
+              private sharedService: SharedServiceComponent, private clubeService: ClubeService,private router: Router) {
 
   }
 
@@ -102,6 +103,10 @@ export class CreateInscricaoProvisoriaClubeJogador3Component implements OnInit {
     }
   }
 
+  redirect(url: string): void {
+    this.router.navigate([url]).then();
+  }
+
   public createInscricaoClubeJogador1(): void {
     this.inscricaoClubeJogadorService.createInscricaoProvisoriaClubeJogador1(this.nome, this.tipoDoc, this.nrIdentificacao,
       this.checkDigit, this.validadeDoc, this.estatutoFpF, this.nif, this.sexo, this.dataNascimento, this.paisNascenca,
@@ -110,6 +115,7 @@ export class CreateInscricaoProvisoriaClubeJogador3Component implements OnInit {
         this.inscricao = data
     });
     setTimeout(window.location.reload.bind(window.location), 200)
+    this.redirect('/home');
   }
 
 }

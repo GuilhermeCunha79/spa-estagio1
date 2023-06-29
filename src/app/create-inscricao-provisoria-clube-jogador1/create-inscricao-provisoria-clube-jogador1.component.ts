@@ -47,6 +47,7 @@ export class CreateInscricaoProvisoriaClubeJogador1Component implements OnInit {
   email1: string;
   nomee: string;
 
+
   roles: string[] = [
     "Colaborador de Associação",
     "Colaborador de Clube"
