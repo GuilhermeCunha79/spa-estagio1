@@ -113,10 +113,10 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
 
     this.nome = this.sharedService.nome;
     this.tipoDoc = this.sharedService.tipoDoc;
-    this.validadeDocId = this.sharedService.validadeDocId;
     this.nif = this.sharedService.nif;
     this.sexo = this.sharedService.sexo;
     this.estatutoFpF = this.sharedService.estatutoFpF;
+    this.validadeDocId = this.sharedService.validadeDocId;
     this.dataNascimento = this.sharedService.dataNascimento;
     this.concelhoResidencia = this.sharedService.concelhoResidencia;
     this.telefone = this.sharedService.telefone;
@@ -134,7 +134,6 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
 
     this.validadeDocId = " ";
     this.dataNascimento = " ";
-
   }
 
 
@@ -232,8 +231,7 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
       this.dataAgora = data;
       this.close();
     }, error => {
-      console.log(error.error);
-      this.flags[12] = true;
+      this.flags[12]=true;
       this.erroo = error.error;
       this.close();
     })
@@ -290,7 +288,6 @@ export class CreateInscricaoProvisoriaClubeJogadorComponent implements OnInit {
   }
 
   checkTrue(num: number): boolean {
-    console.log(this.flags);
     return (this.flags)[num];
   }
 

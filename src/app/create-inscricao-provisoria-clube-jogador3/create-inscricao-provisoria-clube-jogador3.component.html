@@ -135,6 +135,25 @@
   <div class="body">
 
     <section>
+
+      <div *ngIf="checkTrue1()" id="errorSummaryPanel" class="error-summary expanded" style="">
+        <a name="anchorErrorSummaryPanel"></a>
+        <div class="error-summary-header">
+          <h2 style="padding-top: 8px "><span class="error_summary-header-title"></span></h2>
+          <span class="error-summary-header-actions">
+
+                    </span>
+        </div>
+        <div  class="error-summary-panel-container" style="padding-top: 2px; padding-bottom: 9px;">
+          <div id="errorSummaryList" class="error-summary-panel">
+            <ul style="margin-top: 4px">
+              <li *ngIf="checkHonra" class="panelError hasField">Para submeter deve aprovar o compromisso de honra.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
       <div class="content-container">
         <header style="margin-top: 14px;">
           <h2 style="margin-top: 12px;">Nova 1ª inscrição de amadores</h2>
@@ -375,8 +394,7 @@
                   <label for="HonorDeclaration"  style="font-weight: bold;">Declaração de honra:</label>
                   <input class="check-box" data-val="true"
                          data-val-required="The Declaração de honra: field is required." id="HonorDeclaration"
-                         name="HonorDeclaration" type="checkbox" value="true"><input name="HonorDeclaration"
-                                                                                     type="hidden" value="false">
+                         name="HonorDeclaration" type="checkbox" value="true" (change)="checkHonraToTrue()">
                   <span class="HonorDeclaration"  style="font-weight: bold;">Declaro sob compromisso de honra que os dados são verdadeiros e correspondem à realidade.</span>
                 </div>
               </div>

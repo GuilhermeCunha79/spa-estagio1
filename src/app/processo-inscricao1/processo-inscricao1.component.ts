@@ -12,6 +12,7 @@ import {ClubeService} from "../services/clube/clube-service";
 import {AuthService} from "../services/auth/authService";
 import {NgIf} from "@angular/common";
 import {Pessoa} from "../domain/Pessoa";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-processo-inscricao1',
@@ -73,9 +74,10 @@ export class ProcessoInscricao1Component implements OnInit {
     "Colaborador de Clube"
   ];
 
-  constructor(private jogadorService: JogadorService, private auth: AuthService, private clubeService: ClubeService, private docService: DocIdentificacaoService,
-              private pessoaService: PessoaService, private processoService: ProcessoInscricaoService,
-              private shared: SharedServiceComponent) {
+  constructor(private jogadorService: JogadorService, private auth: AuthService, private clubeService: ClubeService,
+              private docService: DocIdentificacaoService, private pessoaService: PessoaService,
+              private processoService: ProcessoInscricaoService, private shared: SharedServiceComponent,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -142,15 +144,22 @@ export class ProcessoInscricao1Component implements OnInit {
     this.atualizado = this.shared.nomee;
     this.contratoForm = "Não";
   }
-
   public aprovarProcesso(): void {
-    this.processoService.updateProcessoInscricao(this.nrProcesso, this.tipoProcesso, this.estado, this.dataInscricao, this.dataInscricao, this.dataInscricao).subscribe(data => {
+    this.processoService.updateProcessoInscricao(this.nrProcesso, this.tipoProcesso, this.estado, this.dataInscricao,
+      this.dataInscricao, this.dataInscricao).subscribe(data => {
       this.processo = data;
     });
+    this.redirect('/processoInscricao');
+    setTimeout(window.location.reload.bind(window.location), 200);
   }
 
-  public reprovarProcesso(): void {
-    this.processoService.deleteProcessoInscricao(this.nrProcesso, this.tipoProcesso, this.estado, this.dataInscricao, this.dataInscricao, this.dataInscricao);
+redirect(url: string): void {
+  this.router.navigate([url]).then();
+}
+
+public reprovarProcesso(): void {
+    this.processoService.deleteProcessoInscricao(this.nrProcesso, this.tipoProcesso, this.estado, this.dataInscricao,
+      this.dataInscricao, this.dataInscricao);
   }
 
 }

@@ -251,12 +251,11 @@
 
                     <td>
                       <label for="file"> <i class='bx bxs-cloud-upload icon'></i>
-                        <button (click)="openDialog()">Capture</button>
                       </label>
 
                       <input type="file" id="file" name="myfile"
                              accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
-                             hidden (change)="onSelectNewFile($event)"><br><br>
+                             hidden (change)="onSelectNewFile($event)" capture="environment"><br><br>
 
                     </td>
 
@@ -277,7 +276,6 @@
 
                     <td>
                       <label for="file1"><i class='bx bxs-cloud-upload icon'></i>
-                        <button (click)="openDialog1()">Capture</button>
                       </label>
                       <input type="file" id="file1" name="myfile1"
                              accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
@@ -346,13 +344,13 @@
                 <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="validadeDoc1"
                      name="validadeDocId.container" style="height: 23px;">
                   <input id="validadeDocId" name="validadeDocId" style="width: 200px " type="text"
-                         [matDatepicker]="picker" class="" [placeholder]="validadeDocId" [(ngModel)]="validadeDocId">
+                         [matDatepicker]="picker" class="" [(ngModel)]="validadeDocId" [placeholder]="validadeDocId">
                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </div>
               </div>
 
-              <div class="form-field-row quarter-width mandatory-field">
+              <div class="form-field-row quarter-width">
                 <label>Nº identificação fiscal:</label>
                 <div class="field-container ui-cst-textbox" data-password="0" data-widget="false" id="Nif1"
                      name="Nif.container">

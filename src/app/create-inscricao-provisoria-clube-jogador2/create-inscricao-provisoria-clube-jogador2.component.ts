@@ -24,12 +24,12 @@ export class CreateInscricaoProvisoriaClubeJogador2Component implements OnInit {
 
 
   imageUrl?: string;
-  imageUrl1?: string;
-  imageUrl2?: string;
-  imageUrl3?: string;
-  imageUrl4?: string;
-  imageUrl5?: string;
-  imageUrl6?: string;
+  imageUrl1?: string= "favicon.ico";
+  imageUrl2?: string= "favicon.ico";
+  imageUrl3?: string= "favicon.ico";
+  imageUrl4?: string= "favicon.ico";
+  imageUrl5?: string= "favicon.ico";
+  imageUrl6?: string= "favicon.ico";
 
   nomeFicheiro: string;
   nomeFicheiro1: string;

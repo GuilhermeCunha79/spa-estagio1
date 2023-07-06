@@ -6,6 +6,7 @@ import {ClubeService} from "../services/clube/clube-service";
 import {
   InscricaoProvisoriaClubeJogadorService
 } from "../services/inscricaoProvisoriaClubeJogador/inscricaoProvisoriaClubeJogador-service";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-create-inscricao-provisoria-clube-jogador3',
@@ -48,14 +49,21 @@ export class CreateInscricaoProvisoriaClubeJogador3Component implements OnInit {
   email1: string;
   nomee: string;
 
+  checkHonra=false;
+
   roles: string[] = [
     "Colaborador de Associação",
     "Colaborador de Clube"
   ];
 
   constructor(private route: ActivatedRoute,private inscricaoClubeJogadorService:InscricaoProvisoriaClubeJogadorService,
-              private sharedService: SharedServiceComponent, private clubeService: ClubeService,private router: Router) {
+              private sharedService: SharedServiceComponent, private clubeService: ClubeService,private router: Router,
+              private viewportScroller: ViewportScroller,) {
 
+  }
+
+  checkTrue1(): boolean {
+    return this.checkHonra;
   }
 
   ngOnInit() {
@@ -108,14 +116,26 @@ export class CreateInscricaoProvisoriaClubeJogador3Component implements OnInit {
   }
 
   public createInscricaoClubeJogador1(): void {
-    this.inscricaoClubeJogadorService.createInscricaoProvisoriaClubeJogador1(this.nome, this.tipoDoc, this.nrIdentificacao,
-      this.checkDigit, this.validadeDoc, this.estatutoFpF, this.nif, this.sexo, this.dataNascimento, this.paisNascenca,
-      this.nacionalidade, this.concelhoResidencia, this.telefone, this.email,
-     this.codClube,this.nomeAssociacao,this.nomeClube,this.modalidade,this.divisao,this.categoria ).subscribe(data => {
+    if(this.checkHonra) {
+      this.inscricaoClubeJogadorService.createInscricaoProvisoriaClubeJogador1(this.nome, this.tipoDoc, this.nrIdentificacao,
+        this.checkDigit, this.validadeDoc, this.estatutoFpF, this.nif, this.sexo, this.dataNascimento, this.paisNascenca,
+        this.nacionalidade, this.concelhoResidencia, this.telefone, this.email,
+        this.codClube, this.nomeAssociacao, this.nomeClube, this.modalidade, this.divisao, this.categoria).subscribe(data => {
         this.inscricao = data
-    });
+      });
+
     setTimeout(window.location.reload.bind(window.location), 200)
     this.redirect('/home');
+    }else{
+      this.checkHonra=true;
+      this.viewportScroller.scrollToPosition([0, 0]);
+    }
   }
+
+  checkHonraToTrue() {
+       this.checkHonra=true;
+  }
+
+
 
 }

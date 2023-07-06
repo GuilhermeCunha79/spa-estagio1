@@ -10,7 +10,6 @@ import {catchError, map, Observable, throwError} from "rxjs";
 export class InscricaoProvisoriaClubeJogadorService {
 
 
-
   public Url = 'https://localhost:5001/api/InscricaoProvisoriaClubeJogador';
 
   constructor(private httpClient: HttpClient, private msgService: MessageService) {
@@ -65,16 +64,16 @@ export class InscricaoProvisoriaClubeJogadorService {
     return res || {};
   }
 
-  validateData(nome: string, tipoDoc:string, nrDoc: string,validadeDoc:string, dataNascimento:string, nif: string, sexo: string, paisOrigem: string, nacionalidade: string, telefone: string, email: string): boolean[] {
+  validateData(nome: string, tipoDoc: string, nrDoc: string, validadeDoc: string, dataNascimento: string, nif: string, sexo: string, paisOrigem: string, nacionalidade: string, telefone: string, email: string): boolean[] {
 
-    let flag = [false, false, false, false, false, false, false, false, false, false, false,false];
+    let flag = [false, false, false, false, false, false, false, false, false, false, false, false];
 
     if (nome == null) {
       this.log("ERRO: O 'Nome' deve ser preenchido.");
       flag[0] = true;
     }
 
-    if (tipoDoc == "Selecione..."|| tipoDoc==undefined) {
+    if (tipoDoc == "Selecione..." || tipoDoc == undefined) {
       this.log("ERRO: O 'Sexo' deve ser preenchido.");
       flag[1] = true;
     }
@@ -111,17 +110,17 @@ export class InscricaoProvisoriaClubeJogadorService {
     }
 
 
-    if (sexo == "Selecione..."|| sexo==null) {
+    if (sexo == "Selecione..." || sexo == null) {
       this.log("ERRO: O 'Sexo' deve ser preenchido.");
       flag[5] = true;
     }
 
-    if (paisOrigem == "Selecione..."||paisOrigem==null) {
+    if (paisOrigem == "Selecione..." || paisOrigem == null) {
       this.log("ERRO: O 'País de origem' deve ser preenchido.");
       flag[7] = true;
     }
 
-    if (nacionalidade == "Selecione..." || nacionalidade==null) {
+    if (nacionalidade == "Selecione..." || nacionalidade == null) {
       this.log("ERRO: A 'Nacionalidade' deve ser preenchida.");
       flag[8] = true;
     }
@@ -160,8 +159,6 @@ export class InscricaoProvisoriaClubeJogadorService {
   }
 
 
-
-
   validateData1(nome: string, nrDoc: string, nif: string, sexo: string, paisOrigem: string, nacionalidade: string, telefone: string, email: string): boolean {
 
     let flag = true;
@@ -180,26 +177,22 @@ export class InscricaoProvisoriaClubeJogadorService {
       flag = false;
     }
 
-    if (nif == null) {
-      this.log("ERRO: O 'Nº. identificação fiscal' deve ser preenchido.");
-    }
-
-    if (nif?.length > 9) {
+    if (nif?.length != 9 && nif != null) {
       this.log("ERRO: O 'Nº. identificação fiscal' deve apenas conter 9 carateres numéricos.");
       flag = false;
     }
 
-    if (sexo == "Selecione..."|| sexo==undefined) {
+    if (sexo == "Selecione..." || sexo == undefined) {
       this.log("ERRO: O 'Sexo' deve ser preenchido.");
       flag = false;
     }
 
-    if (paisOrigem == "Selecione..."||paisOrigem==undefined) {
+    if (paisOrigem == "Selecione..." || paisOrigem == undefined) {
       this.log("ERRO: O 'País de origem' deve ser preenchido.");
       flag = false;
     }
 
-    if (nacionalidade == "Selecione..." || nacionalidade==undefined) {
+    if (nacionalidade == "Selecione..." || nacionalidade == undefined) {
       this.log("ERRO: A 'Nacionalidade' deve ser preenchida.");
       flag = false;
     }
