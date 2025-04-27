@@ -30,4 +30,9 @@ The frontend was built to provide a modern and efficient user interface for inte
 
 The full project report is available [here](https://www.linkedin.com/in/guilhermepcunha/overlay/1705949572955/single-media-viewer/?profileId=ACoAADLMstcBT-v8ByYVIKAwKWjKWO9UcC9uf1c).
 
+## ⚠️ Disclaimer
+
+This repository does not contain any confidential, sensitive, or proprietary information belonging to Armis DS or the Portuguese Football Federation (FPF).  
+It only showcases publicly shareable technical work done as part of the project experience.
+
 ---
