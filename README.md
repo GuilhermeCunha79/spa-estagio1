@@ -1,27 +1,33 @@
-# ApplicationAngular
+# ProScore Platform Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
+This repository contains the frontend of the **ProScore** platform enhancement project, developed in collaboration with **Armis DS** and the **Portuguese Football Federation (FPF)**.
 
-## Development server
+## 🚀 About the Project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The frontend was built to provide a modern and efficient user interface for interacting with the AI-powered backend of the **ProScore** platform, leveraging **Azure Cognitive Services** for intelligent document processing.
 
-## Code scaffolding
+## 🛠️ Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular**
+- **TypeScript**
+- **HTML5 & CSS3**
+- **Bootstrap**
+- **Integration with Azure Cognitive Services**
 
-## Build
+## 📈 Achievements
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- User-friendly interface for document processing and data visualization.
+- Support for uploading and capturing documents directly from mobile devices.
+- Improved overall user experience and system accessibility.
 
-## Running unit tests
+## 🧠 Key Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Upload documents for automatic recognition and processing.
+- Intelligent visualization of extracted data.
+- Smooth communication with the ASP.NET Core backend.
 
-## Running end-to-end tests
+## 📄 Project Report
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The full project report is available [here](https://www.linkedin.com/in/guilhermepcunha/overlay/1705949572955/single-media-viewer/?profileId=ACoAADLMstcBT-v8ByYVIKAwKWjKWO9UcC9uf1c).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
