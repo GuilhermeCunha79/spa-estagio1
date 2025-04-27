@@ -1,4 +1,4 @@
-# ProScore Platform Frontend
+# ProScore Platform Frontend (Intership)
 
 This repository contains the frontend of the **ProScore** platform enhancement project, developed in collaboration with **Armis DS** and the **Portuguese Football Federation (FPF)**.
 
